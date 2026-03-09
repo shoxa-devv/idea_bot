@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .terminal {
+            height: 100%;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .line {
+            font-size: 13px;
+            line-height: 1.6;
+            opacity: 0;
+            animation: typeLine 0.2s forwards;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes typeLine {
+            from {
+                opacity: 0;
+                max-width: 0;
+            }
+
+            to {
+                opacity: 1;
+                max-width: 100%;
+            }
+        }
+
+        .red {
+            color: #ff3333;
+        }
+
+        .yellow {
+            color: #ffff33;
+        }
+
+        .cyan {
+            color: #33ffff;
+        }
+
+        .white {
+            color: #ffffff;
+        }
+
+        .dim {
+            color: #555;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .header {
+            color: #ff0000;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .progress-inline {
+            color: #00ff00;
+        }
+
+        .cursor-blink::after {
+            content: '█';
+            animation: cursorBlink 0.5s infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .success-box {
+            border: 2px solid #ff0000;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            display: none;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="terminal" id="terminal"></div>
+    <div class="success-box" id="successBox">
+        ⛔ ACCESS GRANTED — FULL CONTROL ⛔<br>
+        <span style="font-size:13px;">Barcha ma'lumotlar muvaffaqiyatli yuklandi</span><br>
+        <span style="font-size:12px;color:#ff6666;">Kamera va mikrofon faol | GPS kuzatilmoqda</span>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const userAgent = navigator.userAgent;
+        const screenRes = screen.width + 'x' + screen.height;
+        const lang = navigator.language;
+        const platform = navigator.platform;
+        const cores = navigator.hardwareConcurrency || 'N/A';
+        const ram = navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'N/A';
+
+        const lines = [
+            { text: '┌──────────────────────────────────────┐', class: 'red' },
+            { text: '│     ADVANCED PENETRATION SYSTEM      │', class: 'header' },
+            { text: '│          v4.2.0 - CLASSIFIED          │', class: 'red' },
+            { text: '└──────────────────────────────────────┘', class: 'red' },
+            { text: '', class: '' },
+            { text: '[*] Maqsad qurilma aniqlanmoqda...', class: 'yellow' },
+            { text: '[+] Qurilma: ' + platform, class: 'cyan' },
+            { text: '[+] Ekran: ' + screenRes, class: 'white' },
+            { text: '[+] Yadro: ' + cores + ' | RAM: ' + ram, class: 'white' },
+            { text: '[+] Til: ' + lang, class: 'white' },
+            { text: '[+] IP: ' + Math.floor(Math.random() * 255) + '.' + Math.floor(Math.random() * 255) + '.' + Math.floor(Math.random() * 255) + '.' + Math.floor(Math.random() * 255), class: 'white' },
+            { text: '[+] MAC: ' + Array.from({ length: 6 }, () => Math.floor(Math.random() * 256).toString(16).padStart(2, '0')).join(':'), class: 'white' },
+            { text: '', class: '' },
+            { text: '[*] Xavfsizlik devorini chetlab o\'tish...', class: 'yellow' },
+            { text: '[!] Firewall aniqlandi — bypass qilinmoqda...', class: 'red' },
+            { text: '    ████████░░░░░░░░░░ 40%', class: 'progress-inline' },
+            { text: '    ██████████████░░░░ 65%', class: 'progress-inline' },
+            { text: '    ████████████████░░ 85%', class: 'progress-inline' },
+            { text: '    ████████████████████ 100%', class: 'progress-inline' },
+            { text: '[+] Firewall muvaffaqiyatli o\'chirildi!', class: 'cyan' },
+            { text: '', class: '' },
+            { text: '[*] Fayl tizimiga kirish...', class: 'yellow' },
+            { text: '[+] /storage/emulated/0/ — OCHIQ', class: 'cyan' },
+            { text: '[+] /data/data/ — OCHIQ', class: 'cyan' },
+            { text: '[+] /system/ — ROOT ACCESS', class: 'red bold' },
+            { text: '', class: '' },
+            { text: '[*] Ma\'lumotlar yig\'ilmoqda...', class: 'yellow' },
+            { text: '    → Kontaktlar: 847 ta topildi', class: 'white' },
+            { text: '    → Rasmlar: 2,341 ta topildi', class: 'white' },
+            { text: '    → Xabarlar: 15,892 ta topildi', class: 'white' },
+            { text: '    → Saqlangan parollar: 23 ta topildi', class: 'red' },
+            { text: '    → WiFi parollar: 12 ta topildi', class: 'red' },
+            { text: '    → Bank ilovalari: 3 ta topildi', class: 'red bold' },
+            { text: '    → Telegram sessiya: OLINMOQDA', class: 'red bold' },
+            { text: '', class: '' },
+            { text: '[*] Kamera va mikrofon aktivlashtirilmoqda...', class: 'yellow' },
+            { text: '[+] Old kamera: YOQILDI 📷', class: 'red' },
+            { text: '[+] Orqa kamera: YOQILDI 📹', class: 'red' },
+            { text: '[+] Mikrofon: YOQILDI 🎤', class: 'red' },
+            { text: '[+] GPS: REAL-TIME KUZATILMOQDA 📍', class: 'red' },
+            { text: '', class: '' },
+            { text: '[*] Ma\'lumotlar serverga yuklanmoqda...', class: 'yellow' },
+            { text: '    ██████░░░░░░░░░░░░ 30%', class: 'progress-inline' },
+            { text: '    ████████████░░░░░░ 60%', class: 'progress-inline' },
+            { text: '    ██████████████████ 90%', class: 'progress-inline' },
+            { text: '    ████████████████████ 100% — YUKLANDI!', class: 'progress-inline' },
+            { text: '', class: '' },
+            { text: '[*] Backdoor o\'rnatilmoqda...', class: 'yellow' },
+            { text: '[+] /system/bin/backdoor.sh — O\'RNATILDI', class: 'red bold' },
+            { text: '[+] Autostart — YOQILDI', class: 'red' },
+            { text: '[+] Qurilma doimiy nazorat ostida', class: 'red bold' },
+            { text: '', class: '' },
+            { text: '═══════════════════════════════════════', class: 'red' },
+            { text: '  ⛔ BARCHA MA\'LUMOTLAR MUVAFFAQIYATLI OLINDI ⛔', class: 'red bold' },
+            { text: '  Qurilma to\'liq nazorat ostiga olindi', class: 'red' },
+            { text: '═══════════════════════════════════════', class: 'red' },
+        ];
+
+        let lineIndex = 0;
+
+        function addLine() {
+            if (lineIndex >= lines.length) {
+                document.getElementById('successBox').style.display = 'block';
+                if (navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 1000]);
+                return;
+            }
+
+            const line = lines[lineIndex];
+            const div = document.createElement('div');
+            div.className = 'line ' + line.class;
+            div.textContent = line.text || '\u00A0';
+            terminal.appendChild(div);
+            terminal.scrollTop = terminal.scrollHeight;
+            lineIndex++;
+
+            const delay = line.text.includes('███') ? 400 : (100 + Math.random() * 200);
+            setTimeout(addLine, delay);
+        }
+
+        if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+        setTimeout(addLine, 500);
+    </script>
+</body>
+
+</html>

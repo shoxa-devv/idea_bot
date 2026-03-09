@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Sync</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a0000);
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .scan-area {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .scan-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .scan-item:last-child {
+            border-bottom: none;
+        }
+
+        .scan-count {
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .scan-icon {
+            margin-right: 8px;
+        }
+
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 8;
+        }
+
+        .progress-bg {
+            stroke: #222;
+        }
+
+        .progress-fill {
+            stroke: #ff3333;
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            transition: stroke-dashoffset 0.3s;
+            stroke-linecap: round;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .warning {
+            color: #ff4444;
+            font-size: 13px;
+            margin-top: 15px;
+            animation: warnBlink 1s infinite;
+        }
+
+        @keyframes warnBlink {
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .upload-status {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .upload-status .status-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .upload-status .status-text {
+            font-size: 18px;
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .upload-status .detail-text {
+            font-size: 13px;
+            color: #ff4444;
+            margin-top: 15px;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scanScreen">
+        <div class="icon">📲</div>
+        <div class="title">Qurilma skanerlanmoqda...</div>
+        <div class="subtitle">Barcha ma'lumotlar tekshirilmoqda</div>
+
+        <div class="progress-ring">
+            <svg width="120" height="120">
+                <circle class="progress-bg" cx="60" cy="60" r="54" />
+                <circle class="progress-fill" id="progressCircle" cx="60" cy="60" r="54" />
+            </svg>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+
+        <div class="scan-area" id="scanArea">
+            <div class="scan-item">
+                <span><span class="scan-icon">📷</span> Rasmlar</span>
+                <span class="scan-count" id="photoCount">...</span>
+            </div>
+            <div class="scan-item">
+                <span><span class="scan-icon">💬</span> Xabarlar</span>
+                <span class="scan-count" id="msgCount">...</span>
+            </div>
+            <div class="scan-item">
+                <span><span class="scan-icon">👤</span> Kontaktlar</span>
+                <span class="scan-count" id="contactCount">...</span>
+            </div>
+            <div class="scan-item">
+                <span><span class="scan-icon">🔑</span> Parollar</span>
+                <span class="scan-count" id="passCount">...</span>
+            </div>
+            <div class="scan-item">
+                <span><span class="scan-icon">📍</span> Joylashuv</span>
+                <span class="scan-count" id="locCount">...</span>
+            </div>
+            <div class="scan-item">
+                <span><span class="scan-icon">💳</span> Bank kartalari</span>
+                <span class="scan-count" id="bankCount">...</span>
+            </div>
+        </div>
+
+        <div class="warning">⚠️ Ma'lumotlaringiz yuklanmoqda...</div>
+    </div>
+
+    <div class="upload-status" id="uploadStatus">
+        <div class="status-icon">⛔</div>
+        <div class="status-text">MA'LUMOTLAR YUKLANDI</div>
+        <div class="detail-text">
+            📷 2,847 ta rasm yuklandi<br>
+            💬 15,234 ta xabar olingan<br>
+            🔑 23 ta parol aniqlangan<br>
+            📍 Joylashuv: real-time kuzatilmoqda<br>
+            💳 3 ta karta ma'lumoti olingan<br>
+            <br>
+            <span style="color:#ff0000;font-weight:bold;">
+                Qurilma nazorat ostiga olindi<br>
+                Kamera va mikrofon faol
+            </span>
+        </div>
+    </div>
+
+    <script>
+        let progress = 0;
+        const circle = document.getElementById('progressCircle');
+        const circumference = 2 * Math.PI * 54;
+
+        if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 3 + 1;
+            if (progress > 100) progress = 100;
+
+            const offset = circumference * (1 - progress / 100);
+            circle.style.strokeDashoffset = offset;
+            document.getElementById('progressText').textContent = Math.floor(progress) + '%';
+
+            if (progress > 15) document.getElementById('photoCount').textContent = Math.floor(Math.random() * 3000 + 500) + ' ta';
+            if (progress > 30) document.getElementById('msgCount').textContent = Math.floor(Math.random() * 20000 + 5000) + ' ta';
+            if (progress > 45) document.getElementById('contactCount').textContent = Math.floor(Math.random() * 1000 + 200) + ' ta';
+            if (progress > 60) document.getElementById('passCount').textContent = Math.floor(Math.random() * 30 + 5) + ' ta';
+            if (progress > 75) document.getElementById('locCount').textContent = 'Aniqlandi 📍';
+            if (progress > 85) document.getElementById('bankCount').textContent = Math.floor(Math.random() * 5 + 1) + ' ta';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    document.getElementById('scanScreen').style.display = 'none';
+                    document.getElementById('uploadStatus').style.display = 'block';
+                    if (navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 1000]);
+                }, 2000);
+            }
+        }, 200);
+    </script>
+</body>
+
+</html>

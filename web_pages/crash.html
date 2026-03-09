@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Error</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0078d4;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .sad-face {
+            font-size: 100px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .progress-info {
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .counter {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .error-code {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 30px;
+        }
+
+        .qr-fake {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            background: white;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .qr-fake::after {
+            content: '■';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: #333;
+        }
+
+        .reboot-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .reboot-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #333;
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .reboot-text {
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="bsod">
+        <div class="sad-face">:(</div>
+        <div class="title">Qurilmangizda muammo yuz berdi va uni qayta ishga tushirish kerak.</div>
+        <div class="description">
+            Biz xatolik haqida ma'lumot yig'moqdamiz, keyin qurilma qayta ishga tushadi.
+        </div>
+        <div class="progress-info">
+            <span id="progressText">Xatolik ma'lumotlari yig'ilmoqda...</span>
+            <div class="counter" id="counter">0% bajarildi</div>
+        </div>
+        <div class="error-code">
+            Agar ko'proq bilmoqchi bo'lsangiz, keyinroq ushbu xatoni qidirib ko'ring:<br>
+            Stop code: CRITICAL_PROCESS_DIED<br>
+            Noto'g'ri fayl: ntoskrnl.exe<br>
+            <br>
+            To'xtatish kodi: 0x000000EF<br>
+            Parametrlar: 0x00000003, 0xFFFFF802
+        </div>
+    </div>
+
+    <div class="reboot-screen" id="rebootScreen">
+        <div class="reboot-spinner"></div>
+        <div class="reboot-text">Qurilma qayta ishga tushirilmoqda...</div>
+        <div class="reboot-text" style="margin-top:15px;color:#ff4444;font-size:12px;" id="rebootStatus"></div>
+    </div>
+
+    <script>
+        let progress = 0;
+        const counterEl = document.getElementById('counter');
+
+        if (navigator.vibrate) navigator.vibrate([1000]);
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 2 + 0.5;
+            if (progress > 100) progress = 100;
+            counterEl.textContent = Math.floor(progress) + '% bajarildi';
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    // Show black screen then fake reboot
+                    document.getElementById('bsod').style.display = 'none';
+                    document.body.style.background = '#000';
+
+                    setTimeout(() => {
+                        const reboot = document.getElementById('rebootScreen');
+                        reboot.style.display = 'flex';
+
+                        // Fake reboot failing
+                        const errors = [
+                            'Disk xatoligi aniqlandi...',
+                            'Tizim fayllari buzilgan...',
+                            'Qayta tiklash mumkin emas...',
+                            '⛔ CRITICAL ERROR: Ma\'lumotlar yo\'qoldi',
+                            'Qurilmani servis markaziga olib boring'
+                        ];
+                        let errorIdx = 0;
+                        const errorInterval = setInterval(() => {
+                            if (errorIdx < errors.length) {
+                                document.getElementById('rebootStatus').textContent = errors[errorIdx];
+                                if (navigator.vibrate) navigator.vibrate([200]);
+                                errorIdx++;
+                            } else {
+                                clearInterval(errorInterval);
+                                document.querySelector('.reboot-spinner').style.borderTopColor = '#ff0000';
+                                document.querySelector('.reboot-text').textContent = '⛔ Qayta ishga tushirish muvaffaqiyatsiz';
+                                document.querySelector('.reboot-text').style.color = '#ff4444';
+                            }
+                        }, 2000);
+                    }, 2000);
+                }, 1000);
+            }
+        }, 300);
+    </script>
+</body>
+
+</html>

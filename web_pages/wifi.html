@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a1a;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .radar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 2px solid #00ff00;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .radar::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff00);
+            transform-origin: left center;
+            animation: radarSweep 2s linear infinite;
+        }
+
+        @keyframes radarSweep {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .radar-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .ring1 {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        .ring2 {
+            width: 30%;
+            height: 30%;
+            top: 35%;
+            left: 35%;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #00ff00;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .status {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .wifi-list {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .wifi-item {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            display: none;
+            animation: slideIn 0.3s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .wifi-name {
+            font-size: 14px;
+            color: #00ff00;
+        }
+
+        .wifi-pass {
+            font-size: 12px;
+            color: #ff4444;
+            margin-top: 5px;
+        }
+
+        .wifi-info {
+            font-size: 11px;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .signal-bar {
+            display: inline-block;
+            width: 3px;
+            background: #00ff00;
+            margin: 0 1px;
+            vertical-align: bottom;
+        }
+
+        .cracking-status {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #00ff00;
+            font-size: 14px;
+        }
+
+        .cracking-status .warning {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 10px;
+            animation: warnBlink 1s infinite;
+        }
+
+        @keyframes warnBlink {
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">📡 WiFi Password Scanner</div>
+    <div class="status" id="status">Atrofdagi tarmoqlar qidirilmoqda...</div>
+
+    <div class="radar">
+        <div class="radar-ring ring1"></div>
+        <div class="radar-ring ring2"></div>
+    </div>
+
+    <div class="wifi-list" id="wifiList"></div>
+
+    <div class="cracking-status" id="crackingStatus">
+        <div style="font-size:16px;color:#00ff00;font-weight:bold;">✅ Barcha parollar muvaffaqiyatli olingan</div>
+        <div class="warning">
+            ⚠️ Olingan parollar serverga yuborilmoqda...<br>
+            Qurilma MAC adresi qayd etildi
+        </div>
+    </div>
+
+    <script>
+        const wifiNetworks = [
+            { name: 'TP-Link_Home_5G', pass: 'qwerty123!@#', signal: 4, security: 'WPA2-PSK', channel: 36 },
+            { name: 'HUAWEI-B315-A8F2', pass: 'home_wifi_2024', signal: 3, security: 'WPA2', channel: 6 },
+            { name: 'Beeline_WiFi_5G', pass: 'beeline2024uz', signal: 4, security: 'WPA3', channel: 44 },
+            { name: 'Uzmobile_4G_Router', pass: 'uzm0b1le!99', signal: 2, security: 'WPA2', channel: 11 },
+            { name: 'Cafe_FreeWiFi', pass: 'cafe12345', signal: 3, security: 'WPA', channel: 1 },
+            { name: 'Neighbor_ASUS', pass: 'p@ssw0rd!2024', signal: 2, security: 'WPA2', channel: 6 },
+            { name: 'Office_5GHz', pass: 'off1ce_s3cure!', signal: 1, security: 'WPA3', channel: 149 },
+            { name: 'ASUS_RT-AX88U', pass: 'asus_admin1!', signal: 3, security: 'WPA2', channel: 36 },
+            { name: 'D-Link_DIR-615', pass: 'dlink2024pass', signal: 2, security: 'WPA2', channel: 1 },
+            { name: 'XIAOMI-Router-Pro', pass: 'xi@omi_w1f1', signal: 4, security: 'WPA3', channel: 44 },
+        ];
+
+        const wifiList = document.getElementById('wifiList');
+        const status = document.getElementById('status');
+        let index = 0;
+
+        function addWifi() {
+            if (index >= wifiNetworks.length) {
+                status.textContent = `✅ ${wifiNetworks.length} ta tarmoq topildi va parollari olingan!`;
+                status.style.color = '#00ff00';
+                document.getElementById('crackingStatus').style.display = 'block';
+                if (navigator.vibrate) navigator.vibrate([300, 100, 300]);
+                return;
+            }
+
+            const wifi = wifiNetworks[index];
+            const div = document.createElement('div');
+            div.className = 'wifi-item';
+
+            let signalBars = '';
+            for (let i = 1; i <= 4; i++) {
+                const height = i * 4 + 4;
+                const color = i <= wifi.signal ? '#00ff00' : '#333';
+                signalBars += `<span class="signal-bar" style="height:${height}px;background:${color}"></span>`;
+            }
+
+            div.innerHTML = `
+                <div class="wifi-name">📶 ${wifi.name} ${signalBars}</div>
+                <div class="wifi-pass">🔓 Parol: <span style="background:#1a0000;padding:2px 6px;border-radius:3px;">${wifi.pass}</span></div>
+                <div class="wifi-info">${wifi.security} | CH: ${wifi.channel} | Signal: ${wifi.signal}/4</div>
+            `;
+
+            wifiList.appendChild(div);
+            div.style.display = 'block';
+
+            status.textContent = `Skanerlanmoqda... ${index + 1}/${wifiNetworks.length} ta topildi`;
+
+            if (navigator.vibrate) navigator.vibrate(50);
+
+            index++;
+            setTimeout(addWifi, 1500 + Math.random() * 1000);
+        }
+
+        setTimeout(addWifi, 2000);
+    </script>
+</body>
+
+</html>

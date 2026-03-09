@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Alert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 90vw;
+        }
+
+        .skull {
+            font-size: 80px;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+            animation: blink 0.3s infinite;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .warning-text {
+            font-size: 16px;
+            color: #ff4444;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .progress-container {
+            width: 80%;
+            max-width: 400px;
+            height: 30px;
+            background: #1a1a1a;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4444, #ff0000);
+            width: 0%;
+            transition: width 0.1s;
+            animation: progressGlow 1s infinite;
+        }
+
+        @keyframes progressGlow {
+            50% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #ff6666;
+            margin-top: 10px;
+        }
+
+        .file-list {
+            font-size: 12px;
+            color: #ff3333;
+            text-align: left;
+            max-height: 150px;
+            overflow: hidden;
+            margin: 15px auto;
+            max-width: 350px;
+            padding: 10px;
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px solid #330000;
+            border-radius: 5px;
+        }
+
+        .file-item {
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .counter {
+            font-size: 48px;
+            color: #ff0000;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        }
+
+        .screen-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: red;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .final-warning {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .final-warning .skull-big {
+            font-size: 100px;
+        }
+
+        .final-warning .warn-title {
+            font-size: 22px;
+            color: #ff0000;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            animation: blink 0.5s infinite;
+        }
+
+        .final-warning .warn-detail {
+            font-size: 14px;
+            color: #ff4444;
+            line-height: 2;
+        }
+
+        .final-warning .timer {
+            font-size: 60px;
+            color: #ff0000;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="screen-flash" id="flash"></div>
+    <div class="container" id="virusScreen">
+        <div class="skull">💀</div>
+        <div class="title">⚠️ OGOHLANTIRISH! VIRUS ANIQLANDI! ⚠️</div>
+        <div class="warning-text">
+            Sizning qurilmangiz <span style="color:#fff;font-weight:bold;">TROJAN.MALWARE.X7</span> virusiga
+            chalingan!<br>
+            Shaxsiy ma'lumotlaringiz xavf ostida!
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">Ma'lumotlar skanerlanmoqda... 0%</div>
+        <div class="counter" id="counter"></div>
+        <div class="file-list" id="fileList"></div>
+    </div>
+
+    <div class="container final-warning" id="finalWarning">
+        <div class="skull-big">☠️</div>
+        <div class="warn-title">⛔ QURILMA BLOKLANDI ⛔</div>
+        <div class="warn-detail">
+            Barcha shaxsiy ma'lumotlaringiz serverga yuklandi.<br>
+            📷 Rasmlar: 2,847 ta<br>
+            💬 Xabarlar: 15,234 ta<br>
+            🔑 Parollar: 23 ta<br>
+            📍 Joylashuvingiz: Aniqlandi<br>
+            🎤 Mikrofon: YOQILGAN<br>
+            📹 Kamera: YOQILGAN<br><br>
+            <span style="color:#ff0000;font-weight:bold;">Qurilmangiz formatlangacha:</span>
+        </div>
+        <div class="timer" id="formatTimer">10</div>
+        <div style="font-size:12px;color:#ff3333;animation: blink 1s infinite;">
+            ⚠️ Qurilmani o'chirish mumkin emas...
+        </div>
+    </div>
+
+    <script>
+        const fakeFiles = [
+            "📁 /storage/photos/IMG_2847.jpg",
+            "📁 /storage/WhatsApp/media/voice_note.ogg",
+            "📁 /data/contacts.db — 847 ta kontakt topildi",
+            "📁 /storage/DCIM/video_2024.mp4",
+            "📁 /data/passwords.xml — PAROLLAR TOPILDI!",
+            "📁 /storage/Telegram/files/document.pdf",
+            "📁 /data/banking_app/credentials.dat",
+            "📁 /storage/downloads/private_photos/",
+            "📁 /data/messages.db — 12,847 ta xabar",
+            "📁 /storage/gallery/screenshots/",
+            "📁 /data/browser/cookies.sqlite",
+            "📁 /data/wifi_passwords.conf — 15 ta WiFi paroli",
+            "📁 /storage/notes/personal_diary.txt",
+            "📁 /data/location_history.json — GPS MA'LUMOTLAR",
+            "📁 /storage/voice_recorder/rec_001.mp3",
+        ];
+
+        let progress = 0;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const fileList = document.getElementById('fileList');
+        const counter = document.getElementById('counter');
+        const flash = document.getElementById('flash');
+
+        function flashScreen() {
+            flash.style.opacity = '0.3';
+            setTimeout(() => flash.style.opacity = '0', 100);
+        }
+
+        function vibrate() {
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200, 100, 500]);
+            }
+        }
+
+        vibrate();
+
+        let fileIndex = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 3 + 1;
+            if (progress > 100) progress = 100;
+
+            progressBar.style.width = progress + '%';
+            progressText.textContent = `Ma'lumotlar skanerlanmoqda... ${Math.floor(progress)}%`;
+
+            if (fileIndex < fakeFiles.length && Math.random() > 0.3) {
+                const div = document.createElement('div');
+                div.className = 'file-item';
+                div.textContent = fakeFiles[fileIndex];
+                fileList.appendChild(div);
+                fileIndex++;
+
+                if (fileList.children.length > 6) {
+                    fileList.removeChild(fileList.firstChild);
+                }
+            }
+
+            if (Math.random() > 0.7) flashScreen();
+
+            counter.textContent = `${Math.floor(Math.random() * 500 + fileIndex * 50)} ta fayl topildi`;
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                progressText.textContent = "SKANERLANISH TUGADI! Ma'lumotlar serverga yuklanmoqda...";
+                counter.textContent = "2,847 ta fayl yuklandi ✅";
+
+                setTimeout(() => {
+                    document.getElementById('virusScreen').style.display = 'none';
+                    document.getElementById('finalWarning').style.display = 'block';
+
+                    if (navigator.vibrate) {
+                        navigator.vibrate([500, 200, 500, 200, 1000, 300, 1000]);
+                    }
+
+                    let countdown = 10;
+                    const timerEl = document.getElementById('formatTimer');
+                    const countdownInterval = setInterval(() => {
+                        countdown--;
+                        timerEl.textContent = countdown;
+                        flashScreen();
+                        if (navigator.vibrate) navigator.vibrate([300]);
+                        if (countdown <= 0) {
+                            clearInterval(countdownInterval);
+                            timerEl.textContent = "FORMATLASH BOSHLANDI...";
+                            timerEl.style.fontSize = "20px";
+                            document.body.style.animation = "blink 0.1s infinite";
+                            if (navigator.vibrate) navigator.vibrate([1000, 200, 1000, 200, 1000]);
+                        }
+                    }, 1000);
+                }, 2000);
+            }
+        }, 200);
+    </script>
+</body>
+
+</html>
