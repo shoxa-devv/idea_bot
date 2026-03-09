@@ -111,6 +111,11 @@ async def init_db():
         # Insert default settings if they don't exist
         await db.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('referral_bonus', '3')")
         await db.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('daily_limit', '3')")
+        await db.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('admin_password', 'shoxa2009')")
+
+        # Premium prices can also be stored as single JSON string in settings to keep schema simple
+        prices_json = '{"10_limit": {"amount": 5000, "limits": 10, "name": "10 ta limit"}, "30_limit": {"amount": 10000, "limits": 30, "name": "30 ta limit"}, "100_limit": {"amount": 25000, "limits": 100, "name": "100 ta limit"}, "unlimited": {"amount": 50000, "limits": 999, "name": "Cheksiz (1 oy)"}}'
+        await db.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('prices', ?)", (prices_json,))
 
         await db.commit()
 
@@ -376,20 +381,26 @@ async def get_total_stats():
     """Get total bot statistics."""
     async with aiosqlite.connect(DB_PATH) as db:
         users = await (await db.execute('SELECT COUNT(*) FROM users')).fetchone()
+        banned = await (await db.execute('SELECT COUNT(*) FROM users WHERE is_banned = 1')).fetchone()
         pranks = await (await db.execute('SELECT COUNT(*) FROM prank_history')).fetchone()
         effects = await (await db.execute('SELECT COUNT(*) FROM effect_history')).fetchone()
         referrals = await (await db.execute('SELECT COUNT(*) FROM referrals')).fetchone()
         payments = await (await db.execute(
             "SELECT COUNT(*), COALESCE(SUM(amount), 0) FROM payments WHERE status = 'approved'"
         )).fetchone()
+        pending = await (await db.execute(
+            "SELECT COUNT(*) FROM payments WHERE status = 'pending'"
+        )).fetchone()
         
         return {
             'total_users': users[0],
-            'total_pranks': pranks[0],
-            'total_effects': effects[0],
+            'banned_users': banned[0],
+            'total_pranks_sent': pranks[0],
+            'total_effects_used': effects[0],
             'total_referrals': referrals[0],
             'total_payments': payments[0],
             'total_revenue': payments[1],
+            'pending_payments': pending[0]
         }
 
 
@@ -490,3 +501,54 @@ async def get_admins():
         cursor = await db.execute('SELECT user_id FROM bot_admins')
         rows = await cursor.fetchall()
         return [row[0] for row in rows]
+
+
+async def block_user(user_id_or_username: str):
+    """Block user by ID or username."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        if str(user_id_or_username).startswith('@') or not str(user_id_or_username).isdigit():
+            username = str(user_id_or_username).replace('@', '')
+            await db.execute('UPDATE users SET is_banned = 1 WHERE username = ?', (username,))
+        else:
+            await db.execute('UPDATE users SET is_banned = 1 WHERE user_id = ?', (int(user_id_or_username),))
+        await db.commit()
+        return True
+
+
+async def unblock_user(user_id_or_username: str):
+    """Unblock user by ID or username."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        if str(user_id_or_username).startswith('@') or not str(user_id_or_username).isdigit():
+            username = str(user_id_or_username).replace('@', '')
+            await db.execute('UPDATE users SET is_banned = 0 WHERE username = ?', (username,))
+        else:
+            await db.execute('UPDATE users SET is_banned = 0 WHERE user_id = ?', (int(user_id_or_username),))
+        await db.commit()
+        return True
+
+
+async def is_user_banned(user_id: int) -> bool:
+    """Check if user is banned."""
+    user = await get_user(user_id)
+    return user['is_banned'] == 1 if user else False
+
+
+async def gift_premium(user_id_or_username: str, limits: int):
+    """Gift limits to user by ID or username."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        if str(user_id_or_username).startswith('@') or not str(user_id_or_username).isdigit():
+            username = str(user_id_or_username).replace('@', '')
+            cursor = await db.execute('SELECT user_id FROM users WHERE username = ?', (username,))
+            row = await cursor.fetchone()
+            if not row:
+                return False
+            user_id = row[0]
+        else:
+            user_id = int(user_id_or_username)
+            cursor = await db.execute('SELECT user_id FROM users WHERE user_id = ?', (user_id,))
+            if not await cursor.fetchone():
+                return False
+
+        await db.execute('UPDATE users SET total_limits = total_limits + ? WHERE user_id = ?', (limits, user_id))
+        await db.commit()
+        return user_id

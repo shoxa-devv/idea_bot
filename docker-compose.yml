@@ -1,11 +1,17 @@
 services:
   idea-bot:
     build: .
+    image: idea-bot:latest
     container_name: idea-bot
     restart: unless-stopped
+    tty: true
+    stdin_open: true
     ports:
       - "8080:8080"
     env_file:
       - .env
     volumes:
       - ./bot_database.db:/app/bot_database.db
+      - ./bot.log:/app/bot.log
+      - ./tunnel.log:/app/tunnel.log
+      - ./.env:/app/.env

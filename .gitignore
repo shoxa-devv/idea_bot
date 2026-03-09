@@ -4,3 +4,4 @@ __pycache__/
 .env
 bot_database.db
 *.db
+*.log

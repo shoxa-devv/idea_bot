@@ -1,561 +1,115 @@
-nohup: ignoring input
-🤖 Prank Bot o'rnatilmoqda...
-📥 Kutubxonalar o'rnatilmoqda...
-Requirement already satisfied: python-telegram-bot==20.7 in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (20.7)
-Requirement already satisfied: Pillow==10.2.0 in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (10.2.0)
-Requirement already satisfied: aiohttp==3.9.1 in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (3.9.1)
-Requirement already satisfied: aiosqlite==0.19.0 in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (0.19.0)
-Requirement already satisfied: python-dotenv==1.0.0 in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (1.0.0)
-Requirement already satisfied: httpx~=0.25.2 in ./venv/lib/python3.12/site-packages (from python-telegram-bot==20.7->-r requirements.txt (line 1)) (0.25.2)
-Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.12/site-packages (from aiohttp==3.9.1->-r requirements.txt (line 3)) (25.4.0)
-Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.12/site-packages (from aiohttp==3.9.1->-r requirements.txt (line 3)) (6.7.1)
-Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.12/site-packages (from aiohttp==3.9.1->-r requirements.txt (line 3)) (1.23.0)
-Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.12/site-packages (from aiohttp==3.9.1->-r requirements.txt (line 3)) (1.8.0)
-Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.12/site-packages (from aiohttp==3.9.1->-r requirements.txt (line 3)) (1.4.0)
-Requirement already satisfied: typing-extensions>=4.2 in ./venv/lib/python3.12/site-packages (from aiosignal>=1.1.2->aiohttp==3.9.1->-r requirements.txt (line 3)) (4.15.0)
-Requirement already satisfied: anyio in ./venv/lib/python3.12/site-packages (from httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (4.12.1)
-Requirement already satisfied: certifi in ./venv/lib/python3.12/site-packages (from httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (2026.2.25)
-Requirement already satisfied: httpcore==1.* in ./venv/lib/python3.12/site-packages (from httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (1.0.9)
-Requirement already satisfied: idna in ./venv/lib/python3.12/site-packages (from httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (3.11)
-Requirement already satisfied: sniffio in ./venv/lib/python3.12/site-packages (from httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (1.3.1)
-Requirement already satisfied: h11>=0.16 in ./venv/lib/python3.12/site-packages (from httpcore==1.*->httpx~=0.25.2->python-telegram-bot==20.7->-r requirements.txt (line 1)) (0.16.0)
-Requirement already satisfied: propcache>=0.2.1 in ./venv/lib/python3.12/site-packages (from yarl<2.0,>=1.0->aiohttp==3.9.1->-r requirements.txt (line 3)) (0.4.1)
-🚀 Bot ishga tushirilmoqda...
 /home/shoxadevv/Desktop/idea_bot/bot.py:1176: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
   admin_handler = ConversationHandler(
-2026-03-09 17:37:27,511 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getMe "HTTP/1.1 200 OK"
-2026-03-09 17:37:27,516 - __main__ - INFO - ✅ Database and Web Server initialized
-2026-03-09 17:37:27,715 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/deleteWebhook "HTTP/1.1 200 OK"
-2026-03-09 17:37:27,716 - telegram.ext.Application - INFO - Application started
-2026-03-09 17:37:35,153 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:37:35 +0500] "HEAD /prank/phish_instagram HTTP/1.1" 200 153 "-" "curl/8.5.0"
-2026-03-09 17:37:38,833 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:37:48,944 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:37:59,055 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:09,164 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:19,332 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:29,444 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:39,572 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:49,745 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:38:59,855 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:39:09,963 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:39:20,152 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:39:30,291 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:39:40,429 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:39:50,532 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:00,705 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:10,845 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:20,982 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:31,120 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:41,259 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:40:44,031 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:40:44,032 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:40:44,032 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:40:49,269 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:40:49,270 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:40:49,270 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:40:55,582 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:40:55,583 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:40:55,583 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:03,480 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:03,482 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:03,482 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:07,986 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:41:08,399 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/sendMessage "HTTP/1.1 200 OK"
-2026-03-09 17:41:09,709 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:09 +0500] "GET /prank/phish_telegram?t=c9f00a52f7c1 HTTP/1.1" 200 6037 "-" "TelegramBot (like TwitterBot)"
-2026-03-09 17:41:11,017 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:11 +0500] "GET /prank/phish_telegram?t=c9f00a52f7c1 HTTP/1.1" 200 6037 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-2026-03-09 17:41:11,182 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:11,183 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:11,183 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:11,732 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:11 +0500] "GET /favicon.ico HTTP/1.1" 404 173 "https://member-thickness-encoding-labeled.trycloudflare.com/prank/phish_telegram?t=c9f00a52f7c1" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-2026-03-09 17:41:16,415 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:16,416 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:16,417 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:18,432 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:41:19,050 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/sendMessage "HTTP/1.1 200 OK"
-2026-03-09 17:41:20,793 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:20 +0500] "GET /prank/phish_instagram?t=02697b9e7606 HTTP/1.1" 200 8351 "-" "TelegramBot (like TwitterBot)"
-2026-03-09 17:41:21,932 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:21 +0500] "GET /prank/phish_instagram?t=02697b9e7606 HTTP/1.1" 200 8351 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-2026-03-09 17:41:22,517 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:22 +0500] "GET /favicon.ico HTTP/1.1" 404 173 "https://member-thickness-encoding-labeled.trycloudflare.com/prank/phish_instagram?t=02697b9e7606" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-2026-03-09 17:41:22,743 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:22,743 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:22,743 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:27,959 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:27,960 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:27,961 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:29,201 - web_server - INFO - Successfully sent message to chat 1897652450
-2026-03-09 17:41:29,204 - web_server - ERROR - Phishing data handler error: name 'ADMIN_ID' is not defined
-2026-03-09 17:41:29,205 - aiohttp.access - INFO - 127.0.0.1 [09/Mar/2026:17:41:28 +0500] "POST /api/phish HTTP/1.1" 500 196 "https://member-thickness-encoding-labeled.trycloudflare.com/prank/phish_instagram?t=02697b9e7606" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-2026-03-09 17:41:34,219 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:34,220 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:34,220 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:41,997 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:41,997 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:41,997 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:48,994 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:48,996 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:48,996 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:59,939 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:41:59,939 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:41:59,940 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:42:15,897 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:42:15,898 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:42:15,898 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:42:31,874 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 409 Conflict"
-2026-03-09 17:42:31,875 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:42:31,875 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 688, in _network_loop_retry
-    if not await action_cb():
-           ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 384, in polling_action_cb
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_updater.py", line 373, in polling_action_cb
-    updates = await self.bot.get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 558, in get_updates
-    updates = await super().get_updates(
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 3584, in get_updates
-    await self._post(
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 381, in _request_wrapper
-    raise Conflict(message)
-telegram.error.Conflict: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
-2026-03-09 17:42:59,301 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:43:09,403 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:43:19,609 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:43:30,247 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8377221957:AAGA2XeZPe0u5oX0hWQxmc2GlLC1wfw9xUM/getUpdates "HTTP/1.1 200 OK"
-2026-03-09 17:43:30,249 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
-2026-03-09 17:43:30,249 - telegram.ext.Application - INFO - Application.stop() complete
 🤖 Prank Bot ishga tushmoqda...
 ✅ Bot tayyor! Ishga tushirilmoqda...
-🌐 Web server ishga tushdi: http://0.0.0.0:8080
+Traceback (most recent call last):
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
+    raise exc
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
+    stream = await self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 124, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
+    return await self._backend.connect_tcp(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 113, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 268, in do_request
+    res = await self._client.request(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1530, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/shoxadevv/Desktop/idea_bot/bot.py", line 1225, in <module>
+    main()
+  File "/home/shoxadevv/Desktop/idea_bot/bot.py", line 1221, in main
+    app.run_polling(drop_pending_updates=True)
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 818, in run_polling
+    return self.__run(
+           ^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 1006, in __run
+    raise exc
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 995, in __run
+    loop.run_until_complete(self.initialize())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 477, in initialize
+    await self.bot.initialize()
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 286, in initialize
+    await super().initialize()
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 735, in initialize
+    await self.get_me()
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 1697, in get_me
+    return await super().get_me(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
+    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 775, in get_me
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
+    return await request.post(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 340, in _request_wrapper
+    raise exc
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 330, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 285, in do_request
+    raise TimedOut from err
+telegram.error.TimedOut: Timed out

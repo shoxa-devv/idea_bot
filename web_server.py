@@ -4,7 +4,7 @@ import json
 import logging
 import aiohttp
 
-from config import BOT_TOKEN, LOG_GROUP_ID, PHISHING_TYPES
+from config import BOT_TOKEN, LOG_GROUP_ID, PHISHING_TYPES, ADMIN_ID
 
 logger = logging.getLogger(__name__)
 
