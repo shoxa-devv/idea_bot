@@ -303,6 +303,19 @@ def apply_spy_effect(image_bytes: bytes) -> bytes:
     return output.getvalue()
 
 
+def remove_exif(image_bytes: bytes) -> bytes:
+    """Remove EXIF data from an image."""
+    img = Image.open(io.BytesIO(image_bytes))
+    data = list(img.getdata())
+    img_without_exif = Image.new(img.mode, img.size)
+    img_without_exif.putdata(data)
+    
+    output = io.BytesIO()
+    img_without_exif.save(output, format='PNG')
+    output.seek(0)
+    return output.getvalue()
+
+
 # Map effect names to functions
 EFFECT_FUNCTIONS = {
     'glitch': apply_glitch_effect,
@@ -313,6 +326,7 @@ EFFECT_FUNCTIONS = {
     'red_alert': apply_red_alert_effect,
     'ghost': apply_ghost_effect,
     'spy': apply_spy_effect,
+    'exif_remover': remove_exif,
 }
 
 

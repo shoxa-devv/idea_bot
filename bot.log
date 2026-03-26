@@ -1,115 +1,67 @@
-/home/shoxadevv/Desktop/idea_bot/bot.py:1176: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
+nohup: ignoring input
+/home/shoxadevv/Desktop/idea_bot/bot.py:2274: PTBUserWarning: If 'per_message=False', 'CallbackQueryHandler' will not be tracked for every message. Read this FAQ entry to learn more about the per_* settings: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Frequently-Asked-Questions#what-do-the-per_-settings-in-conversationhandler-do.
   admin_handler = ConversationHandler(
-🤖 Prank Bot ishga tushmoqda...
-✅ Bot tayyor! Ishga tushirilmoqda...
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 66, in map_httpcore_exceptions
-    yield
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 366, in handle_async_request
-    resp = await self._pool.handle_async_request(req)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
-    raise exc from None
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
-    response = await connection.handle_async_request(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 101, in handle_async_request
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 78, in handle_async_request
-    stream = await self._connect(request)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 124, in _connect
-    stream = await self._network_backend.connect_tcp(**kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_backends/auto.py", line 31, in connect_tcp
-    return await self._backend.connect_tcp(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 113, in connect_tcp
-    with map_exceptions(exc_map):
-  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
-    raise to_exc(exc) from exc
-httpcore.ConnectTimeout
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 268, in do_request
-    res = await self._client.request(
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1530, in request
-    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1617, in send
-    response = await self._send_handling_auth(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
-    response = await self._send_handling_redirects(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
-    response = await self._send_single_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_client.py", line 1719, in _send_single_request
-    response = await transport.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 365, in handle_async_request
-    with map_httpcore_exceptions():
-  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 83, in map_httpcore_exceptions
-    raise mapped_exc(message) from exc
-httpx.ConnectTimeout
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/shoxadevv/Desktop/idea_bot/bot.py", line 1225, in <module>
-    main()
-  File "/home/shoxadevv/Desktop/idea_bot/bot.py", line 1221, in main
-    app.run_polling(drop_pending_updates=True)
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 818, in run_polling
-    return self.__run(
-           ^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 1006, in __run
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 995, in __run
-    loop.run_until_complete(self.initialize())
-  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
-    return future.result()
-           ^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_application.py", line 477, in initialize
-    await self.bot.initialize()
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 286, in initialize
-    await super().initialize()
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 735, in initialize
-    await self.get_me()
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 1697, in get_me
-    return await super().get_me(
-           ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 525, in decorator
-    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 775, in get_me
-    result = await self._post(
-             ^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 613, in _post
-    return await self._do_post(
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/ext/_extbot.py", line 340, in _do_post
-    return await super()._do_post(
-           ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/_bot.py", line 641, in _do_post
-    return await request.post(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 200, in post
-    result = await self._request_wrapper(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 340, in _request_wrapper
-    raise exc
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_baserequest.py", line 330, in _request_wrapper
-    code, payload = await self.do_request(
-                    ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/shoxadevv/Desktop/idea_bot/venv/lib/python3.12/site-packages/telegram/request/_httpxrequest.py", line 285, in do_request
-    raise TimedOut from err
-telegram.error.TimedOut: Timed out
+2026-03-26 17:09:00,334 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getMe "HTTP/1.1 200 OK"
+2026-03-26 17:09:00,337 - __main__ - INFO - ✅ Database and Web Server initialized
+2026-03-26 17:09:00,437 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/deleteWebhook "HTTP/1.1 200 OK"
+2026-03-26 17:09:00,440 - telegram.ext.Application - INFO - Application started
+2026-03-26 17:09:10,860 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:09:21,019 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:09:31,158 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:09:41,396 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:09:51,534 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:01,688 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:11,809 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:21,947 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:32,084 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:42,221 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:10:52,337 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:02,499 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:12,635 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:22,747 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:32,911 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:43,047 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:11:53,184 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:03,322 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:13,439 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:23,545 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:33,735 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:43,974 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:12:54,112 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:04,258 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:14,366 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:24,503 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:34,664 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:44,800 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:13:54,937 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:14:05,053 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:14:15,213 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:14:20,420 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 409 Conflict"
+2026-03-26 17:14:20,421 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-26 17:14:20,421 - __main__ - WARNING - Conflict error — ikki bot nusxasi ishlayapti. Eski jarayonni to'xtating!
+2026-03-26 17:14:25,759 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 409 Conflict"
+2026-03-26 17:14:25,760 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-26 17:14:25,760 - __main__ - WARNING - Conflict error — ikki bot nusxasi ishlayapti. Eski jarayonni to'xtating!
+2026-03-26 17:14:28,217 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:14:28,730 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/sendMessage "HTTP/1.1 200 OK"
+2026-03-26 17:14:30,162 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:14:30,368 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/sendMessage "HTTP/1.1 200 OK"
+2026-03-26 17:14:32,005 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 409 Conflict"
+2026-03-26 17:14:32,006 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-26 17:14:32,006 - __main__ - WARNING - Conflict error — ikki bot nusxasi ishlayapti. Eski jarayonni to'xtating!
+2026-03-26 17:14:34,057 - aiohttp.access - INFO - 127.0.0.1 [26/Mar/2026:17:14:34 +0500] "GET /tracker?t=536b10685643 HTTP/1.1" 200 7767 "-" "TelegramBot (like TwitterBot)"
+2026-03-26 17:14:35,060 - aiohttp.access - INFO - 127.0.0.1 [26/Mar/2026:17:14:35 +0500] "GET /tracker?t=536b10685643 HTTP/1.1" 200 7767 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+2026-03-26 17:14:37,228 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 409 Conflict"
+2026-03-26 17:14:37,229 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-26 17:14:37,229 - __main__ - WARNING - Conflict error — ikki bot nusxasi ishlayapti. Eski jarayonni to'xtating!
+2026-03-26 17:14:43,453 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 409 Conflict"
+2026-03-26 17:14:43,454 - telegram.ext.Updater - ERROR - Error while getting Updates: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+2026-03-26 17:14:43,455 - __main__ - WARNING - Conflict error — ikki bot nusxasi ishlayapti. Eski jarayonni to'xtating!
+2026-03-26 17:14:55,865 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:06,011 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:16,349 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:26,482 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:36,621 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:46,757 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:15:56,895 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"
+2026-03-26 17:16:07,033 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8494606059:AAH1u2ChMyvfhp0sXCyzEVa8gS5b10pLZgQ/getUpdates "HTTP/1.1 200 OK"

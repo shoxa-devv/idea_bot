@@ -67,3 +67,18 @@ IMAGE_EFFECTS = {
     'ghost': '👻 Ghost Effect',
     'spy': '🕵️ Spy Camera',
 }
+# Hacker tool types
+# Professional Secret Tools
+HACKER_TOOLS = {
+    'osint': {'emoji': '🕵️', 'name': 'OSINT Qidiruv', 'type': 'internal'},
+    'ransomware': {'emoji': '💀', 'name': 'Fake Ransomware', 'type': 'link'},
+    'tracker': {'emoji': '📍', 'name': 'IP/Camera Tracker', 'type': 'link'},
+    'voice': {'emoji': '🎤', 'name': 'Ovoz O\'zgartirgich', 'type': 'internal'},
+    'tempmail': {'emoji': '📧', 'name': 'Vaqtinchalik Email', 'type': 'internal'},
+    'deface': {'emoji': '🖥', 'name': 'Website Deface', 'type': 'internal'},
+    'se': {'emoji': '📨', 'name': 'Ijtimoiy Muhandislik', 'type': 'internal'},
+    'exif': {'emoji': '🧹', 'name': 'EXIF Remover', 'type': 'internal'},
+    'terminal': {'emoji': '💻', 'name': 'Terminal Emulator', 'type': 'internal'},
+    'scanner': {'emoji': '🔍', 'name': 'Vulnerability Scanner', 'type': 'internal'},
+    'gpt': {'emoji': '🤖', 'name': 'Hacker GPT (AI)', 'type': 'internal'},
+}

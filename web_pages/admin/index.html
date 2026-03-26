@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Premium Idea Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Use absolute paths for the admin scope -->
+    <link rel="stylesheet" href="/admin/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="title-group">
+                <h1 id="main-title">Admin Dashboard</h1>
+                <p>Bot ekotizimini to'liq nazorat qilish</p>
+            </div>
+            <div class="server-status">
+                <span class="status-dot"></span>
+                <span>SERVER: <span style="text-transform: uppercase;">ONLINE</span></span>
+            </div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card" id="card-users">
+                <p>Total Users</p>
+                <h2 id="stat-total-users">0</h2>
+                <div
+                    style="height: 4px; width: 100%; background: rgba(139, 92, 246, 0.2); border-radius: 10px; margin-top: 15px;">
+                    <div style="height: 100%; width: 70%; background: var(--accent-purple); border-radius: 10px;"></div>
+                </div>
+            </div>
+            <div class="stat-card" id="card-wins">
+                <p>Pranks Sent</p>
+                <h2 id="stat-total-wins">0</h2>
+                <div
+                    style="height: 4px; width: 100%; background: rgba(59, 130, 246, 0.2); border-radius: 10px; margin-top: 15px;">
+                    <div style="height: 100%; width: 45%; background: var(--accent-blue); border-radius: 10px;"></div>
+                </div>
+            </div>
+            <div class="stat-card" id="card-referrals">
+                <p>Referrals</p>
+                <h2 id="stat-total-referrals">0</h2>
+                <div
+                    style="height: 4px; width: 100%; background: rgba(16, 185, 129, 0.2); border-radius: 10px; margin-top: 15px;">
+                    <div style="height: 100%; width: 60%; background: var(--accent-green); border-radius: 10px;"></div>
+                </div>
+            </div>
+            <div class="stat-card broadcast" id="btn-broadcast">
+                <i class="fas fa-paper-plane"></i>
+                <p>Broadcast Message</p>
+            </div>
+        </div>
+
+        <!-- Global Settings -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fas fa-sliders-h"></i>
+                <h3>Tizim Sozlamalari</h3>
+            </div>
+            <form id="settings-form" class="form-grid">
+                <div class="form-group">
+                    <label>Admin Parol</label>
+                    <input type="text" id="setting-admin-pass" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Referal Bonus (ta)</label>
+                    <input type="number" id="setting-ref-bonus" value="3">
+                </div>
+                <div class="form-group">
+                    <label>Kunlik Limit (ta)</label>
+                    <input type="number" id="setting-daily-limit" value="3">
+                </div>
+                <button type="submit" id="btn-save-settings">Saqlash</button>
+            </form>
+        </div>
+
+        <!-- Mandatory Subs -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fas fa-link"></i>
+                <h3>Majburiy Obunalar</h3>
+            </div>
+            <form id="channel-form" class="form-grid">
+                <div class="form-group">
+                    <label>Kanal Nomi</label>
+                    <input type="text" id="chan-title" placeholder="Masalan: My Channel">
+                </div>
+                <div class="form-group">
+                    <label>Username / ID</label>
+                    <input type="text" id="chan-id" placeholder="@username">
+                </div>
+                <div class="form-group">
+                    <label>Havola (Link)</label>
+                    <input type="text" id="chan-link" placeholder="https://t.me/...">
+                </div>
+                <button type="submit" class="btn-green">Qo'shish</button>
+            </form>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nomi</th>
+                            <th>ID / Username</th>
+                            <th>Amal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="channels-table-body">
+                        <!-- Channels will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Users Table -->
+        <div class="section">
+            <div class="section-header">
+                <i class="fas fa-user-shield"></i>
+                <h3>Foydalanuvchilar Bazasi</h3>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Foydalanuvchi</th>
+                            <th>Limitlar</th>
+                            <th>Xolat</th>
+                            <th>Oxirgi faollik</th>
+                            <th>Qo'shilgan sana</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- Users will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Broadcast Modal -->
+    <div id="broadcast-modal"
+        style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px);">
+        <div class="section broadcast-modal-content"
+            style="width: 100%; max-width: 600px; margin-bottom: 0; border: 1px solid rgba(255,255,255,0.15); padding: 30px;">
+            <div class="modal-header"
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-bullhorn" style="color: #ff4757; font-size: 1.2rem;"></i>
+                    <h3 style="margin: 0; font-size: 1.3rem;">Reklama Yuborish</h3>
+                </div>
+                <i class="fas fa-times" id="broadcast-close-btn"
+                    style="cursor: pointer; color: var(--text-secondary); font-size: 1.2rem;"></i>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-edit"></i> XABAR MATNI <span style="color: #ff4757;">(MAJBURIY)</span>
+                </label>
+                <textarea id="broadcast-text" style="width: 100%; height: 120px; margin-top: 10px;"
+                    placeholder="Xabar matnini yozing...&#10;HTML teglar: <b>qalin</b>, <i>kursiv</i>, <a href='url'>havola</a>"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-image"></i> RASM BIRIKTIRISH <span
+                        style="color: var(--text-secondary); opacity: 0.6;">(IXTIYORIY)</span>
+                </label>
+                <div class="file-input-container" style="margin-top: 10px;">
+                    <input type="file" id="broadcast-image" accept="image/*"
+                        style="width: 100%; padding: 10px; border: 1px dashed var(--glass-border); border-radius: 12px; font-size: 0.85rem;">
+                </div>
+            </div>
+
+            <div class="form-grid" style="margin-bottom: 25px;">
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-link"></i> TUGMA MATNI <span style="opacity: 0.6;">(IXTIYORIY)</span>
+                    </label>
+                    <input type="text" id="broadcast-btn-text" placeholder="Masalan: Kanalga o'tish"
+                        style="margin-top: 10px;">
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-globe"></i> LINK YOKI @USERNAME
+                    </label>
+                    <input type="text" id="broadcast-btn-url" placeholder="@shoxa yoki https://..."
+                        style="margin-top: 10px;">
+                </div>
+            </div>
+
+            <button id="broadcast-send-btn"
+                style="width: 100%; padding: 18px; font-size: 1.1rem; background: linear-gradient(90deg, #7b61ff, #9c88ff); margin-bottom: 20px;">
+                🚀 Yuborish (<span id="btn-count">0</span> foydalanuvchiga)
+            </button>
+
+            <!-- Progress Container -->
+            <div id="broadcast-progress-container" style="display: none;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.85rem;">
+                    <span id="broadcast-status-text">Yuborilmoqda...</span>
+                    <span id="broadcast-percentage">0%</span>
+                </div>
+                <div
+                    style="height: 8px; width: 100%; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden;">
+                    <div id="broadcast-progress-bar"
+                        style="height: 100%; width: 0%; background: linear-gradient(90deg, #00d2ff, #3a7bd5); transition: width 0.3s ease;">
+                    </div>
+                </div>
+                <p id="broadcast-done-text"
+                    style="display: none; color: var(--accent-green); text-align: center; margin-top: 15px; font-weight: 700;">
+                    ✅ Reklama muvaffaqiyatli tarqatildi!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Use absolute path for scripts -->
+    <script src="/admin/script.js"></script>
+</body>
+
+</html>

